@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class enemy : MonoBehaviour
 {
+     [Range(20, 180)]
+     public float RotationSpeed = 30f;
 
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(Vector3.up,+30 * Time.deltaTime); 
+        transform.Rotate(Vector3.up, RotationSpeed * Time.deltaTime); 
     }
 }

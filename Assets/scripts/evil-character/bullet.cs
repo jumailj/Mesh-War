@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class bullet : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [Range(1f, 20f)]
+    public float Bulletspeed = 10f;
+
     public GameObject parent;
     void Start()
     {
         
     }
-
-    // Update is called once per frame
     void Update()
     {
-
-        transform.Translate(Vector3.forward* 10 * Time.deltaTime);    
+        transform.Translate(Vector3.forward* Bulletspeed * Time.deltaTime);    
+        Debug.Log("bullet speed: " + Bulletspeed);
     }
 }
