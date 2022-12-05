@@ -4,17 +4,23 @@ using UnityEngine;
 
 public class bullet : MonoBehaviour
 {
-    [Range(1f, 20f)]
-    public float Bulletspeed = 10f;
+ 
+            
+            GameObject enemy;
+            EnemyManager enemymanager;
 
-    public GameObject parent;
+
     void Start()
     {
-        
+        enemy = GameObject.Find("evil_character");
+        enemymanager = enemy.GetComponent<EnemyManager>();
+        Debug.Log(enemymanager.bulletSpeed) ;
     }
+
     void Update()
     {
-        transform.Translate(Vector3.forward* Bulletspeed * Time.deltaTime);    
-        Debug.Log("bullet speed: " + Bulletspeed);
+         transform.Translate(Vector3.forward* enemymanager.bulletSpeed * Time.deltaTime);    
+        // Debug.Log("bullet speed: " + Enemymanager.bulletSpeed);
     }
+
 }
