@@ -13,7 +13,6 @@ public class spawner : MonoBehaviour
     public Transform SpawnTransform;
     public GameObject bullet;
     
-
     // Update is called once per frame
     void Update()
     {
