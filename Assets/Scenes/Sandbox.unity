@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -132,7 +132,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 531135749}
-  - component: {fileID: 531135750}
   m_Layer: 0
   m_Name: spawn_poin
   m_TagString: Untagged
@@ -155,20 +154,17 @@ Transform:
   m_Father: {fileID: 1653649669}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &531135750
+--- !u!114 &581244883 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 8090544736069400127, guid: 59d6d182ae8c45d498f7d3b3d9b96bb1, type: 3}
+  m_PrefabInstance: {fileID: 2846400809514656612}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 531135748}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c16fe376443f33449b4553cc1a95e801, type: 3}
+  m_Script: {fileID: 11500000, guid: 89c6cef5f9a1c584da0b80f48f60e19a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnTransform: {fileID: 531135749}
-  bullet: {fileID: 3913755053480866385, guid: 59d6d182ae8c45d498f7d3b3d9b96bb1, type: 3}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -457,7 +453,7 @@ GameObject:
   - component: {fileID: 1653649668}
   - component: {fileID: 1653649667}
   - component: {fileID: 1653649666}
-  - component: {fileID: 1653649670}
+  - component: {fileID: 1653649671}
   m_Layer: 0
   m_Name: evil_character
   m_TagString: Untagged
@@ -544,7 +540,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1653649670
+--- !u!114 &1653649671
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -553,9 +549,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1653649665}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de801e3082fb01a4e856081e5c9877d1, type: 3}
+  m_Script: {fileID: 11500000, guid: 1f0c5d9e5cd54fa4c920a1bbca04c6bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RotationSpeed: 50
+  bulletSpeed: 50
+  SpawnTransform: {fileID: 531135749}
+  bullet: {fileID: 3913755053480866385, guid: 59d6d182ae8c45d498f7d3b3d9b96bb1, type: 3}
+  bulletscript: {fileID: 581244883}
 --- !u!1001 &2846400809514656612
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -623,5 +624,17 @@ PrefabInstance:
       propertyPath: parent
       value: 
       objectReference: {fileID: 1653649665}
+    - target: {fileID: 8090544736069400127, guid: 59d6d182ae8c45d498f7d3b3d9b96bb1, type: 3}
+      propertyPath: Bulletspeed
+      value: 6.97
+      objectReference: {fileID: 0}
+    - target: {fileID: 8090544736069400127, guid: 59d6d182ae8c45d498f7d3b3d9b96bb1, type: 3}
+      propertyPath: enemymanger
+      value: 
+      objectReference: {fileID: 1653649671}
+    - target: {fileID: 8090544736069400127, guid: 59d6d182ae8c45d498f7d3b3d9b96bb1, type: 3}
+      propertyPath: Enemymanager
+      value: 
+      objectReference: {fileID: 1653649671}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59d6d182ae8c45d498f7d3b3d9b96bb1, type: 3}
