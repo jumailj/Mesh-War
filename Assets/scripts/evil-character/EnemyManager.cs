@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyManager : MonoBehaviour
 {
 
-    // enemy object rotation 
+    // set enemy object rotation 
     [Range(50.0f, 180.0f)]
     public float RotationSpeed = 50.0f;
 
@@ -18,10 +18,6 @@ public class EnemyManager : MonoBehaviour
 
     //bullet prefab object;
     public GameObject bullet;
-
-    // bullet speed controller;
-    public bullet bulletscript;
-
 
     // Update is called once per frame
     void Update()
