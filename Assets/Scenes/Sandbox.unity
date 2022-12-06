@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 100398446}
   m_Layer: 0
   m_Name: back
-  m_TagString: Untagged
+  m_TagString: bulletDespawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -199,17 +199,6 @@ Transform:
   m_Father: {fileID: 1653649669}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &581244883 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8090544736069400127, guid: 59d6d182ae8c45d498f7d3b3d9b96bb1, type: 3}
-  m_PrefabInstance: {fileID: 2846400809514656612}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89c6cef5f9a1c584da0b80f48f60e19a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -316,7 +305,7 @@ GameObject:
   - component: {fileID: 835912331}
   m_Layer: 0
   m_Name: left
-  m_TagString: Untagged
+  m_TagString: bulletDespawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -445,7 +434,7 @@ GameObject:
   - component: {fileID: 1123401331}
   m_Layer: 0
   m_Name: right
-  m_TagString: Untagged
+  m_TagString: bulletDespawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -491,7 +480,7 @@ GameObject:
   - component: {fileID: 1138221463}
   - component: {fileID: 1138221462}
   m_Layer: 0
-  m_Name: Plane
+  m_Name: ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -588,7 +577,7 @@ GameObject:
   - component: {fileID: 1169542399}
   m_Layer: 0
   m_Name: up
-  m_TagString: Untagged
+  m_TagString: bulletDespawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -632,7 +621,7 @@ GameObject:
   - component: {fileID: 1475538825}
   m_Layer: 0
   m_Name: Despawnder
-  m_TagString: Untagged
+  m_TagString: bulletDespawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -771,7 +760,6 @@ MonoBehaviour:
   bulletSpeed: 20.2
   SpawnTransform: {fileID: 531135749}
   bullet: {fileID: 3913755053480866385, guid: 59d6d182ae8c45d498f7d3b3d9b96bb1, type: 3}
-  bulletscript: {fileID: 581244883}
 --- !u!1001 &2846400809514656612
 PrefabInstance:
   m_ObjectHideFlags: 0
