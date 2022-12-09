@@ -1,17 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class EnemyManager : MonoBehaviour
 {
 
-    // set enemy object rotation 
-    [Range(50.0f, 180.0f)]
-    public float RotationSpeed = 50.0f;
-
-    //set bullet speed
-    [Range(10,50)]
-    public float bulletSpeed = 10.0f;
 
     // it is used to get the postion&rotation to spawn a bullet
     public Transform SpawnTransform;
@@ -19,20 +13,91 @@ public class EnemyManager : MonoBehaviour
     //bullet prefab object;
     public GameObject bullet;
 
-    // Update is called once per frame
+        //set bullet speed
+    [Range(2.0f,7.0f)]
+    public float bulletSpeed = 2.0f;
+
+    [Range(1,50)]
+    public float firingTime = 5.0f;
+    [Range(1,50)]
+    public float holdingTime = 10.0f;
+
+    // firing;
+     bool isNumberGenerated = false;
+     List<Int32> firingAnagleList = new List<Int32>();
+
+
     void Update()
     {
         // object rotation;
-        transform.Rotate(Vector3.up, RotationSpeed * Time.deltaTime); 
-
         //draw Red ray(Debug)
         Vector3 forwardDistance = transform.TransformDirection(Vector3.forward) * 10;
         Debug.DrawRay(transform.position, forwardDistance, Color.red);
 
-        //spawn bullet;
-        if (Input.GetKeyDown(KeyCode.Space)) 
-        {
-            Instantiate(bullet, SpawnTransform.position, SpawnTransform.rotation);
+        /* 
+        rotation;
+        dividing 2 consecutive rotation into 2 part. 
+        first part is using positive  0.0 ->  0.9 -> 0.0,[180+180] which is known as firing part
+        second part is using negative 0.0 -> -0.9 -> 0.0,[180+180] which is known as holding part 
+        */
+
+        //Debug.Log(transform.localRotation.y);
+        // if the rotation angle is between 0 and 9 it's on firing state
+        if (transform.localRotation.y >= 0) {
+                RotateObject(firingTime);
+                FireProjitile();
+                
+            //Debug.Log(count);
+
+        // if the rotation angle is between 0 and -9 it's on holding state
+        } else if ( transform.localRotation.y < 0) {
+                isNumberGenerated = false;
+                firingAnagleList.Clear();
+                RotateObject(holdingTime);
         }
     }
+
+
+    // generate random firing angles and fire.
+    void FireProjitile() {
+        // random number generator;
+        System.Random rnd = new System.Random();
+        int randvalue = 0;
+
+        // generate random number equal to firingtime(seconds); and add it to firingAngleList;
+         /* numbergenerated(bool) reset on next Holding time; to avoid generating on each steps*/
+         if ( isNumberGenerated!= true) {
+                for (int j = 1; j <= firingTime; j++)
+                {
+                    randvalue = Convert.ToInt32(rnd.NextDouble() * 360);
+                    firingAnagleList.Add(randvalue);     
+                }
+            isNumberGenerated = true;
+         }
+
+         int angle = Convert.ToInt32(transform.localRotation.eulerAngles.y);
+
+        if (firingAnagleList.Contains(angle)) 
+        {
+                // reduce duplicate firing.
+                firingAnagleList.Remove(angle);
+                // spawn bullets;
+                fire();
+        }
+    }
+
+    void fire() {
+        Instantiate(bullet, SpawnTransform.position, SpawnTransform.rotation);
+    }
+
+    void RotateObject(float seconds) 
+    {
+        transform.Rotate(Vector3.up, (360 * Time.deltaTime) / seconds);
+
+       //  Debug.Log((360 * Time.deltaTime) / seconds);
+        // multiply 360 by Time.deltatime give us 360 full rotaiton in 1 seconds.
+        // dividing it by seconds to reduce the rotation angle in each steps;
+    }
+
+
 }
