@@ -5,8 +5,6 @@ using System;
 
 public class EnemyManager : MonoBehaviour
 {
-
-
     // it is used to get the postion&rotation to spawn a bullet
     public Transform SpawnTransform;
 
@@ -26,9 +24,13 @@ public class EnemyManager : MonoBehaviour
      bool isNumberGenerated = false;
      List<Int32> firingAnagleList = new List<Int32>();
 
+    void Start() {
+          Application.targetFrameRate = 500;
+    }
 
     void Update()
     {
+
         // object rotation;
         //draw Red ray(Debug)
         Vector3 forwardDistance = transform.TransformDirection(Vector3.forward) * 10;
@@ -73,15 +75,22 @@ public class EnemyManager : MonoBehaviour
                     firingAnagleList.Add(randvalue);     
                 }
             isNumberGenerated = true;
+
+            foreach ( int i in firingAnagleList) {
+            Debug.Log(i);
+         }
          }
 
-         int angle = Convert.ToInt32(transform.localRotation.eulerAngles.y);
+         
 
+         int angle = Convert.ToInt32(transform.localRotation.eulerAngles.y);
+            Debug.Log(angle);
         if (firingAnagleList.Contains(angle)) 
         {
                 // reduce duplicate firing.
                 firingAnagleList.Remove(angle);
                 // spawn bullets;
+                Debug.Log("firing..at " + angle);
                 fire();
         }
     }
