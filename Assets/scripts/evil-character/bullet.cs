@@ -17,7 +17,7 @@ public class bullet : MonoBehaviour
     void Update()
     {
          transform.Translate(Vector3.forward* enemymanager.bulletSpeed * Time.deltaTime);    
-         transform.Rotate(Vector3.forward* 500 * Time.deltaTime);
+         transform.Rotate(Vector3.forward* enemymanager.bulletSpeed * 200 * Time.deltaTime);
         // Debug.Log("bullet speed: " + Enemymanager.bulletSpeed);  
 
     }
