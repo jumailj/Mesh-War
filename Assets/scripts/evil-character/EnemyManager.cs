@@ -12,13 +12,16 @@ public class EnemyManager : MonoBehaviour
     public GameObject bullet;
 
         //set bullet speed
-    [Range(2.0f,7.0f)]
-    public float bulletSpeed = 2.0f;
+    [Range(0.0f,7.0f)]
+    public float bulletSpeed = 0.0f;
 
     [Range(1,50)]
     public float firingTime = 5.0f;
     [Range(1,50)]
     public float holdingTime = 10.0f;
+
+    [Range(1,40)]
+    public  int bulletPerSeconds = 2;
 
     // firing;
      bool isNumberGenerated = false;
@@ -69,7 +72,7 @@ public class EnemyManager : MonoBehaviour
         // generate random number equal to firingtime(seconds); and add it to firingAngleList;
          /* numbergenerated(bool) reset on next Holding time; to avoid generating on each steps*/
          if ( isNumberGenerated!= true) {
-                for (int j = 1; j <= firingTime; j++)
+                for (int j = 1; j <= bulletPerSeconds; j++)
                 {
                     randvalue = Convert.ToInt32(rnd.NextDouble() * 360);
                     firingAnagleList.Add(randvalue);     
