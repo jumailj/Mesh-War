@@ -6,6 +6,7 @@ TagManager:
   tags:
   - bulletDespawner
   - enemy
+  - playerShield
   layers:
   - Default
   - TransparentFX
