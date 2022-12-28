@@ -80,20 +80,17 @@ public class EnemyManager : MonoBehaviour
             isNumberGenerated = true;
 
             foreach ( int i in firingAnagleList) {
-            Debug.Log(i);
          }
          }
 
          
 
          int angle = Convert.ToInt32(transform.localRotation.eulerAngles.y);
-            Debug.Log(angle);
         if (firingAnagleList.Contains(angle)) 
         {
                 // reduce duplicate firing.
                 firingAnagleList.Remove(angle);
                 // spawn bullets;
-                Debug.Log("firing..at " + angle);
                 fire();
         }
     }

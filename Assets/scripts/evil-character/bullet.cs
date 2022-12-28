@@ -26,8 +26,13 @@ public class bullet : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {    
         if (other.tag == "bulletDespawner") {
-                  Destroy(this.gameObject);
+                Destroy(this.gameObject);
         }
+
+        if (other.tag == "playerShield") {
+                Destroy(this.gameObject);
+        }
+
     }
 
  }
