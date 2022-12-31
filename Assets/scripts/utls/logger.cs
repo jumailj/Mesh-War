@@ -10,6 +10,7 @@ public class logger : MonoBehaviour
 {
 
     public player player;
+    public GameObject playerObject;
 
     public Text fpsText;
 
@@ -25,8 +26,9 @@ public class logger : MonoBehaviour
     {
         int val = (int)(1.0f / Time.smoothDeltaTime);
         string player_shield = Convert.ToInt32(player.shieldcharge).ToString();
+        string playerSpeed = (player.horizontalMove*10).ToString();
 
-        fpsText.text =  "Fps : " + val.ToString() + "\n" + "Shield: " + player_shield;
+        fpsText.text =  "Fps : " + val.ToString() + "\n" + "Shield: " + player_shield + "\n" +"Player Speed: "+playerSpeed; 
 
     }
 }

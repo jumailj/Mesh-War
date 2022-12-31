@@ -423,6 +423,7 @@ MonoBehaviour:
   shield: {fileID: 849006397}
   shieldcharge: 100
   moveSpeed: 40
+  horizontalMove: 0
 --- !u!135 &756006951
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1390,6 +1391,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 756006950}
+  playerObject: {fileID: 756006949}
   fpsText: {fileID: 2110651358}
 --- !u!4 &1806239101
 Transform:
@@ -1726,7 +1728,9 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Fps : 999
 
-    Shield: 999.0'
+    Shield: 999
+
+    Player Speed: 99'
 --- !u!222 &2110651359
 CanvasRenderer:
   m_ObjectHideFlags: 0
