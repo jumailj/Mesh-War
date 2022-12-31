@@ -1726,7 +1726,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Fps : 999
 
-    Shield: 999.0'
+    Shield: 999'
 --- !u!222 &2110651359
 CanvasRenderer:
   m_ObjectHideFlags: 0
