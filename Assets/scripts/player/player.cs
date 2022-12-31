@@ -29,17 +29,19 @@ public class player : MonoBehaviour
         if ( Input.GetKeyDown(KeyCode.A)){
                 totalLeftKey += 1;    
         }
-        if ( totalLeftKey == 1) {
-                doubleClickDelay_L -= Time.deltaTime;
-                if ( doubleClickDelay_L <= 0) {
-                        totalLeftKey-= 1;
-                        doubleClickDelay_L = 1.0f;
-                }
-        }
+
+        /* change 1 to 0 after some seconds*/
+        // if ( totalLeftKey == 1) {
+        //         doubleClickDelay_L -= Time.deltaTime;
+        //         if ( doubleClickDelay_L <= 0) {
+        //                 totalLeftKey-= 1;
+        //                 doubleClickDelay_L = 1.0f;
+        //         }
+        // }
         // Debug.Log(totalLeftKey);
 
         if ( totalLeftKey == 2) {
-                horizontalMove *= 2.0f;
+                horizontalMove *= 1.5f;
         }
 
         if ( totalLeftKey == 2 && (Input.GetKeyUp(KeyCode.A))) {
@@ -51,26 +53,27 @@ public class player : MonoBehaviour
         if ( Input.GetKeyDown(KeyCode.D)){
                 totalRightKey += 1;    
         }
-        if ( totalRightKey == 1) {
-                doubleClickDelay_R -= Time.deltaTime;
-                if ( doubleClickDelay_R <= 0) {
-                        totalRightKey-= 1;
-                        doubleClickDelay_R = 1.0f;
-                }
-        }
+
+        /* change 1 to 0 after some seconds*/
+        // if ( totalRightKey == 1) {
+        //         doubleClickDelay_R -= Time.deltaTime;
+        //         if ( doubleClickDelay_R <= 0) {
+        //                 totalRightKey-= 1;
+        //                 doubleClickDelay_R = 1.0f;
+        //         }
+        // }
+
         Debug.Log(totalRightKey);
 
         if ( totalRightKey == 2) {
-                horizontalMove *= 2.0f;
+                horizontalMove *= 1.5f;
         }
 
         if ( totalRightKey == 2 && (Input.GetKeyUp(KeyCode.D))) {
                 totalRightKey = 0;
         }
-
-
     }
-  
+
 
     // Update is called once per frame
     void Update()
