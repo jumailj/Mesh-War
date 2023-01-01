@@ -17,6 +17,8 @@ public class player : MonoBehaviour
     float doubleClickDelay_R = 0.3f;
     int totalRightKey = 0;
 
+
+
     
     // Start is called before the first frame update
     void Start()
@@ -25,53 +27,18 @@ public class player : MonoBehaviour
     }
 
     void DoubleKeyPress() {
-        // left-double control;
-        if ( Input.GetKeyDown(KeyCode.A)){
-                totalLeftKey += 1;    
+        if(Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.W)  ) 
+        {
+                horizontalMove *=2.5f;
+        }
+                if(Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.W) )
+        {
+                if ( !Input.GetKey(KeyCode.A)) {
+                horizontalMove *=2.5f;
+                }
         }
 
-        /* change 1 to 0 after some seconds*/
-        // if ( totalLeftKey == 1) {
-        //         doubleClickDelay_L -= Time.deltaTime;
-        //         if ( doubleClickDelay_L <= 0) {
-        //                 totalLeftKey-= 1;
-        //                 doubleClickDelay_L = 1.0f;
-        //         }
-        // }
-        // Debug.Log(totalLeftKey);
-
-        if ( totalLeftKey == 2) {
-                horizontalMove *= 1.5f;
-        }
-
-        if ( totalLeftKey == 2 && (Input.GetKeyUp(KeyCode.A))) {
-                totalLeftKey = 0;
-        }
-
-
-        // right-double control;
-        if ( Input.GetKeyDown(KeyCode.D)){
-                totalRightKey += 1;    
-        }
-
-        /* change 1 to 0 after some seconds*/
-        // if ( totalRightKey == 1) {
-        //         doubleClickDelay_R -= Time.deltaTime;
-        //         if ( doubleClickDelay_R <= 0) {
-        //                 totalRightKey-= 1;
-        //                 doubleClickDelay_R = 1.0f;
-        //         }
-        // }
-
-        Debug.Log(totalRightKey);
-
-        if ( totalRightKey == 2) {
-                horizontalMove *= 1.5f;
-        }
-
-        if ( totalRightKey == 2 && (Input.GetKeyUp(KeyCode.D))) {
-                totalRightKey = 0;
-        }
+        Debug.Log("total Left Key " + totalLeftKey);
     }
 
 
