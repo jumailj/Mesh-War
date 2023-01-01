@@ -32,7 +32,7 @@ public class bullet : MonoBehaviour
         if (other.tag == "playerShield") {
                 Destroy(this.gameObject);
         }
-
+        
     }
 
  }
