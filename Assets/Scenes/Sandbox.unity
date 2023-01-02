@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 65903780}
   - component: {fileID: 65903781}
   m_Layer: 0
-  m_Name: Point Light
+  m_Name: light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1031,7 +1031,7 @@ GameObject:
   - component: {fileID: 1351217595}
   - component: {fileID: 1351217596}
   m_Layer: 0
-  m_Name: Point Light
+  m_Name: light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1362,7 +1362,7 @@ MonoBehaviour:
   SpawnTransform: {fileID: 531135749}
   bullet: {fileID: 3913755053480866385, guid: 59d6d182ae8c45d498f7d3b3d9b96bb1, type: 3}
   bulletSpeed: 1
-  firingTime: 1
+  firingTime: 3
   holdingTime: 2
   bulletPerSeconds: 2
 --- !u!1 &1806239099
@@ -1722,7 +1722,7 @@ GameObject:
   - component: {fileID: 2110651359}
   - component: {fileID: 2110651358}
   m_Layer: 5
-  m_Name: frame_rate
+  m_Name: logger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
