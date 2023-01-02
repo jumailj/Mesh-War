@@ -5,18 +5,15 @@ using UnityEngine;
 public class protagonistBullet : MonoBehaviour
 {
     // Start is called before the first frame update
-
     GameObject player;
-    playerManager playermanager;
+    protagonistManager playermanager;
 
-    
     void Start()
     {
         player = GameObject.FindWithTag("player");
-        playermanager = player.GetComponent<playerManager>();   
+        playermanager = player.GetComponent<protagonistManager>();   
 
         Debug.Log("player bullet init");  
-
         Debug.Log(player);
     }
 

@@ -9,7 +9,8 @@ using System;
 public class logger : MonoBehaviour
 {
 
-    public playerManager player;
+    public protagonistManager player;
+
     public GameObject playerObject;
 
     public Text fpsText;

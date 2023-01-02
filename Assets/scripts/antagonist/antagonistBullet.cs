@@ -2,15 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class bullet : MonoBehaviour
+public class antagonistBullet : MonoBehaviour
 {        
             GameObject enemy;
-            EnemyManager enemymanager;
-
+            antagonistManager enemymanager;
     void Start()
     {
         enemy = GameObject.FindWithTag("enemy");
-        enemymanager = enemy.GetComponent<EnemyManager>();
+        enemymanager = enemy.GetComponent<antagonistManager>();
         //  Debug.Log(enemymanager.bulletSpeed) ;
     }
 
@@ -37,4 +36,3 @@ public class bullet : MonoBehaviour
 
  }
     
-

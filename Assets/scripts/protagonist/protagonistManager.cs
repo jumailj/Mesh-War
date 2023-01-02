@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class playerManager : MonoBehaviour
+public class protagonistManager : MonoBehaviour
 {
     public Transform enemyTarget;
     public GameObject shield;
@@ -14,15 +14,7 @@ public class playerManager : MonoBehaviour
     public GameObject bullet;
 
     [Range(0.0f,7.0f)]
-    public float bulletSpeed = 0.0f;
-
-
-
-    float doubleClickDelay_L = 0.3f;
-    int totalLeftKey = 0;
-
-    float doubleClickDelay_R = 0.3f;
-    int totalRightKey = 0;
+    public float bulletSpeed = 10.0f;
 
     GameObject activeObject;
 
@@ -83,7 +75,7 @@ public class playerManager : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Space)) {
 
-                activeObject = GameObject.Find("protagonist_bullet(Clone)");
+                activeObject = GameObject.Find("protagonistBullet(Clone)");
 
                 if ( activeObject == null) {
                 Instantiate(bullet,spawnTransform.position, spawnTransform.rotation);

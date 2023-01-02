@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class EnemyManager : MonoBehaviour
+public class antagonistManager : MonoBehaviour
 {
     // it is used to get the postion&rotation to spawn a bullet
     public Transform SpawnTransform;
