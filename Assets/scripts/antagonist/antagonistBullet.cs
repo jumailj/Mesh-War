@@ -6,7 +6,6 @@ public class antagonistBullet : MonoBehaviour
 {        
             GameObject enemy;
             antagonistManager enemymanager;
-
     void Start()
     {
         enemy = GameObject.FindWithTag("enemy");
