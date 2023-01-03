@@ -9,6 +9,7 @@ TagManager:
   - playerShield
   - player
   - enemyBullet
+  - PlayFab
   layers:
   - Default
   - TransparentFX

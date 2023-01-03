@@ -18,13 +18,14 @@ public class protagonistManager : MonoBehaviour
 
     GameObject activeObject;
     
+    public int score;
+    
     private ProtagonistController protagonistController;
 
    private void Awake() {
         protagonistController = new ProtagonistController();
    }
-
-
+   
    private void OnEnable() {
         protagonistController.Enable();
    }
@@ -33,12 +34,11 @@ public class protagonistManager : MonoBehaviour
         protagonistController.Disable();
    }
 
-
-    
     // Start is called before the first frame update
     void Start()
     {
         shield.SetActive(false);
+        score = 0;
     }
 
         void Update()
