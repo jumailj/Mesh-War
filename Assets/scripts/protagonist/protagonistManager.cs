@@ -18,13 +18,13 @@ public class protagonistManager : MonoBehaviour
 
     GameObject activeObject;
 
-
-
+    public int score;
     
     // Start is called before the first frame update
     void Start()
     {
         shield.SetActive(false);
+        score = 0;
     }
 
     void DoubleKeyPress() {
