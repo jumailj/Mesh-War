@@ -17,13 +17,13 @@ public class protagonistManager : MonoBehaviour
     public float bulletSpeed = 10.0f;
 
     GameObject activeObject;
-
+    
     private ProtagonistController protagonistController;
-
 
    private void Awake() {
         protagonistController = new ProtagonistController();
    }
+
 
    private void OnEnable() {
         protagonistController.Enable();
@@ -45,7 +45,7 @@ public class protagonistManager : MonoBehaviour
     {  
         transform.LookAt(enemyTarget);
 
-        HorizontalMove(1.5f);
+        HorizontalMove(moveSpeed, 1.5f);
         Fire();
         Shield_();
         
@@ -53,20 +53,15 @@ public class protagonistManager : MonoBehaviour
     }
 
 
-    void HorizontalMove( float speedFactor ) {
+    void HorizontalMove( float movespeed_, float speedFactor ) {
         float move = protagonistController.Player.move.ReadValue<float>();
         float HorizontaDouble_L = protagonistController.Player.move_Double_L.ReadValue<float>();
         float HorizontaDouble_R = protagonistController.Player.move_Dobule_R.ReadValue<float>();
 
-        horizontalMove = move * moveSpeed * Time.deltaTime;
+        horizontalMove = move * movespeed_ * Time.deltaTime;
 
         if (HorizontaDouble_L != 0 || HorizontaDouble_R != 0) 
-                horizontalMove*=speedFactor;
-
-        //gamepad double speeding;
-        if(move == 1.0 || move == -1) {
-                horizontalMove*=speedFactor;
-        }             
+                horizontalMove*=speedFactor;          
     }
 
     void Fire() {
@@ -101,5 +96,4 @@ public class protagonistManager : MonoBehaviour
                 }
              } 
     }
-
 }
