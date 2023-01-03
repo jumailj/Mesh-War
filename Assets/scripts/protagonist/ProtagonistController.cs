@@ -196,26 +196,15 @@ public partial class @ProtagonistController : IInputActionCollection2, IDisposab
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""Horizontal-double-gamePad"",
-                    ""id"": ""91750f68-2f1a-48b6-9af9-e2b4a14a50fa"",
-                    ""path"": ""OneModifier"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""move_Double_L"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""binding"",
-                    ""id"": ""93c62bdc-8049-484e-8e0b-c1f9bff8a791"",
+                    ""name"": """",
+                    ""id"": ""ff5c0840-a39c-4f5f-ba5a-3a85cd89afd0"",
                     ""path"": ""<Gamepad>/leftTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""move_Double_L"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": true
+                    ""isPartOfComposite"": false
                 },
                 {
                     ""name"": ""Horizontal-double-Keyboard-R"",
@@ -249,6 +238,17 @@ public partial class @ProtagonistController : IInputActionCollection2, IDisposab
                     ""action"": ""move_Dobule_R"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""00e424d2-5cfc-4d74-9a6b-0897788218f6"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""move_Dobule_R"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
