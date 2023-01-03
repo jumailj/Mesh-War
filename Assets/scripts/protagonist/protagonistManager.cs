@@ -18,6 +18,20 @@ public class protagonistManager : MonoBehaviour
 
     GameObject activeObject;
 
+    private ProtagonistController protagonistController;
+
+
+   private void Awake() {
+        protagonistController = new ProtagonistController();
+   }
+
+   private void OnEnable() {
+        protagonistController.Enable();
+   }
+
+   private void OnDisable() {
+        protagonistController.Disable();
+   }
 
 
     
@@ -27,35 +41,51 @@ public class protagonistManager : MonoBehaviour
         shield.SetActive(false);
     }
 
-    void DoubleKeyPress() {
-        if(Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.W)  ) 
-        {
-                horizontalMove *=2.5f;
-        }
-        if(Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.W) )
-        {
-                if ( !Input.GetKey(KeyCode.A)) {
-                horizontalMove *=2.5f;
-                }
-        }
+        void Update()
+    {  
+        transform.LookAt(enemyTarget);
 
+        HorizontalMove(1.5f);
+        Fire();
+        Shield_();
+        
+        gameObject.transform.RotateAround(enemyTarget.transform.position ,Vector3.up,horizontalMove);
     }
 
 
-    // Update is called once per frame
-    void Update()
-    {
-        // to look at the enemy object, which is placed center
-        transform.LookAt(enemyTarget);
+    void HorizontalMove( float speedFactor ) {
+        float move = protagonistController.Player.move.ReadValue<float>();
+        float HorizontaDouble_L = protagonistController.Player.move_Double_L.ReadValue<float>();
+        float HorizontaDouble_R = protagonistController.Player.move_Dobule_R.ReadValue<float>();
 
-        horizontalMove = moveSpeed * Time.deltaTime* Input.GetAxis("Horizontal");
-        DoubleKeyPress();
-        gameObject.transform.RotateAround(enemyTarget.transform.position ,Vector3.up,horizontalMove);
-       //  Debug.Log(Input.GetAxis("Horizontal"));
+        horizontalMove = move * moveSpeed * Time.deltaTime;
 
+        if (HorizontaDouble_L != 0 || HorizontaDouble_R != 0) 
+                horizontalMove*=speedFactor;
 
-        //shield;
-             if ( Input.GetMouseButton(1)) { // right button pressed.
+        //gamepad double speeding;
+        if(move == 1.0 || move == -1) {
+                horizontalMove*=speedFactor;
+        }             
+    }
+
+    void Fire() {
+        float fire = protagonistController.Player.Fire.ReadValue<float>();
+        if(fire != 0) 
+        {
+                activeObject = GameObject.Find("protagonistBullet(Clone)");
+                
+                if ( activeObject == null) 
+                {
+                Instantiate(bullet,spawnTransform.position, spawnTransform.rotation);
+                }
+        }
+    }
+
+    void Shield_() {
+        float shield_key = protagonistController.Player.Shield.ReadValue<float>();
+
+             if ( shield_key != 0) {
                 
                 if ( shieldcharge >= 1) {
                         shield.SetActive(true);
@@ -69,32 +99,7 @@ public class protagonistManager : MonoBehaviour
                 if ( shieldcharge < 100) {
                         shieldcharge +=Time.deltaTime * 30; // increasing;
                 }
-             }   
-
-
-
-        if(Input.GetKeyDown(KeyCode.Space)) {
-
-                activeObject = GameObject.Find("protagonistBullet(Clone)");
-
-                if ( activeObject == null) {
-                Instantiate(bullet,spawnTransform.position, spawnTransform.rotation);
-                }
-
-        }
-
-
-
+             } 
     }
-
-    //bullet spawner;
-
-    /* rotaiton using waves*/
-    // void circularMotion( float frequency, float x_amplitude, float z_amplitude) {
-    //     float x = Mathf.Cos(Time.time* frequency) * x_amplitude;
-    //     float y = 0.5f; // lock it on y axis
-    //     float z =  Mathf.Sin(Time.time* frequency) * z_amplitude;
-    //     transform.position = new Vector3(x,y,z);
-    // }
 
 }
