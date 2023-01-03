@@ -1,11 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI; 
 using PlayFab;
 using PlayFab.ClientModels;
+using TMPro;
 
 public class PlayfabManager : MonoBehaviour
 {
+
+    public GameObject panelMainMenu;
+    public GameObject panelStartGame;
+    public GameObject panelScoreBoard;
+    public GameObject buttonStartGame;
+    public GameObject inputFieldName;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,13 +26,39 @@ public class PlayfabManager : MonoBehaviour
     {
         var request = new LoginWithCustomIDRequest {
             CustomId = SystemInfo.deviceUniqueIdentifier,
-            CreateAccount = true
+            CreateAccount = true,
+            InfoRequestParameters = new GetPlayerCombinedInfoRequestParams {
+                GetPlayerProfile = true
+            }
         };
-        PlayFabClientAPI.LoginWithCustomID(request, OnSuccess, OnError);
+        PlayFabClientAPI.LoginWithCustomID(request, OnLoginSuccess, OnError);
     }
 
-    void OnSuccess(LoginResult result) {
+    void OnLoginSuccess(LoginResult result) {
         Debug.Log("Success login/account create!");
+        string name = null;
+        if(result.InfoResultPayload.PlayerProfile != null)
+            name = result.InfoResultPayload.PlayerProfile.DisplayName;
+        
+        if(name != null)
+            inputFieldName.GetComponent<TMP_InputField>().text = name;
+    }
+
+    public void SubmitButtonStartGame() {
+        var inputName = inputFieldName.GetComponent<TMP_InputField>().text; 
+
+        if (inputName == "")
+            inputName = "Guest";
+
+        var request = new UpdateUserTitleDisplayNameRequest {
+            DisplayName = inputName,
+        };
+        PlayFabClientAPI.UpdateUserTitleDisplayName(request, OnDisplayNameUpdate, OnError);
+    }
+
+    void OnDisplayNameUpdate(UpdateUserTitleDisplayNameResult result) {
+        Debug.Log("Updated display name");
+        panelMainMenu.SetActive(false);
     }
 
     void OnError(PlayFabError error) { 
