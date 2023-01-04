@@ -22,7 +22,7 @@ public class PlayfabManager : MonoBehaviour
     void Start()
     {
         Login();
-    }
+    } 
 
     // Update is called once per frame
     void Login()

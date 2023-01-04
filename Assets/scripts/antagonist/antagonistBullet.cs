@@ -30,9 +30,11 @@ public class antagonistBullet : MonoBehaviour
 
         if (other.tag == "playerShield") {
                 Destroy(this.gameObject);
-        }
-        
-    }
+        }  
 
+        //  if (other.gameObject.tag == "Boundry") { 
+        //       //     Destroy(this.gameObject);
+        // }  
+    }
  }
     
