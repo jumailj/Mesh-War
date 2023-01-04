@@ -1,11 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI; 
 using PlayFab;
 using PlayFab.ClientModels;
+using TMPro;
 
 public class PlayfabManager : MonoBehaviour
 {
+
+    public GameObject panelMainMenu;
+    public GameObject panelStartGame;
+    public GameObject panelScoreBoard;
+    public GameObject buttonStartGame;
+    public GameObject inputFieldName;
+
+    public Transform entryContainer;
+    public Transform entryTemplate;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,13 +29,42 @@ public class PlayfabManager : MonoBehaviour
     {
         var request = new LoginWithCustomIDRequest {
             CustomId = SystemInfo.deviceUniqueIdentifier,
-            CreateAccount = true
+            CreateAccount = true,
+            InfoRequestParameters = new GetPlayerCombinedInfoRequestParams {
+                GetPlayerProfile = true
+            }
         };
-        PlayFabClientAPI.LoginWithCustomID(request, OnSuccess, OnError);
+        PlayFabClientAPI.LoginWithCustomID(request, OnLoginSuccess, OnError);
     }
 
-    void OnSuccess(LoginResult result) {
+    void OnLoginSuccess(LoginResult result) {
         Debug.Log("Success login/account create!");
+
+        GetScoreboard();
+
+        string name = null;
+        if(result.InfoResultPayload.PlayerProfile != null)
+            name = result.InfoResultPayload.PlayerProfile.DisplayName;
+        
+        if(name != null)
+            inputFieldName.GetComponent<TMP_InputField>().text = name;
+    }
+
+    public void SubmitButtonStartGame() {
+        var inputName = inputFieldName.GetComponent<TMP_InputField>().text; 
+
+        if (inputName == "")
+            inputName = "Guest";
+
+        var request = new UpdateUserTitleDisplayNameRequest {
+            DisplayName = inputName,
+        };
+        PlayFabClientAPI.UpdateUserTitleDisplayName(request, OnDisplayNameUpdate, OnError);
+    }
+
+    void OnDisplayNameUpdate(UpdateUserTitleDisplayNameResult result) {
+        Debug.Log("Updated display name");
+        panelMainMenu.SetActive(false);
     }
 
     void OnError(PlayFabError error) { 
@@ -46,7 +87,7 @@ public class PlayfabManager : MonoBehaviour
         Debug.Log("Success on score board update"); 
     }
 
-    public void GetScoreBoard() {
+    public void GetScoreboard() {
         var request = new GetLeaderboardRequest
             {
                 StatisticName = "Score",
@@ -55,8 +96,15 @@ public class PlayfabManager : MonoBehaviour
     }
     
     void OnScoreBoardGet(GetLeaderboardResult result) {
+        float templateHeight = 30f;
         foreach (var item in result.Leaderboard) {
-                Debug.Log(item.Position + " " + item.PlayFabId + " " + item.StatValue);
+            Debug.Log(item.Position + " " + item.DisplayName + " " + item.StatValue);
+
+            Transform entryTransform = Instantiate(entryTemplate, entryContainer);    
+            RectTransform entryRectTransform = entryTransform.GetComponent<RectTransform>();
+            entryRectTransform.anchoredPosition = new Vector2(0, -templateHeight * item.Position);
+            entryTransform.Find("LPlayer").GetComponent<TMP_Text>().text = item.DisplayName;
+            entryTransform.Find("LScore").GetComponent<TMP_Text>().text = item.StatValue.ToString();
         }
     }
 }
