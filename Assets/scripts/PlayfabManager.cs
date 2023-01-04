@@ -15,6 +15,9 @@ public class PlayfabManager : MonoBehaviour
     public GameObject buttonStartGame;
     public GameObject inputFieldName;
 
+    public Transform entryContainer;
+    public Transform entryTemplate;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +39,9 @@ public class PlayfabManager : MonoBehaviour
 
     void OnLoginSuccess(LoginResult result) {
         Debug.Log("Success login/account create!");
+
+        GetScoreboard();
+
         string name = null;
         if(result.InfoResultPayload.PlayerProfile != null)
             name = result.InfoResultPayload.PlayerProfile.DisplayName;
@@ -81,7 +87,7 @@ public class PlayfabManager : MonoBehaviour
         Debug.Log("Success on score board update"); 
     }
 
-    public void GetScoreBoard() {
+    public void GetScoreboard() {
         var request = new GetLeaderboardRequest
             {
                 StatisticName = "Score",
@@ -90,8 +96,15 @@ public class PlayfabManager : MonoBehaviour
     }
     
     void OnScoreBoardGet(GetLeaderboardResult result) {
+        float templateHeight = 30f;
         foreach (var item in result.Leaderboard) {
-                Debug.Log(item.Position + " " + item.DisplayName + " " + item.StatValue);
+            Debug.Log(item.Position + " " + item.DisplayName + " " + item.StatValue);
+
+            Transform entryTransform = Instantiate(entryTemplate, entryContainer);    
+            RectTransform entryRectTransform = entryTransform.GetComponent<RectTransform>();
+            entryRectTransform.anchoredPosition = new Vector2(0, -templateHeight * item.Position);
+            entryTransform.Find("LPlayer").GetComponent<TMP_Text>().text = item.DisplayName;
+            entryTransform.Find("LScore").GetComponent<TMP_Text>().text = item.StatValue.ToString();
         }
     }
 }
