@@ -91,7 +91,7 @@ public class PlayfabManager : MonoBehaviour
     
     void OnScoreBoardGet(GetLeaderboardResult result) {
         foreach (var item in result.Leaderboard) {
-                Debug.Log(item.Position + " " + item.PlayFabId + " " + item.StatValue);
+                Debug.Log(item.Position + " " + item.DisplayName + " " + item.StatValue);
         }
     }
 }
