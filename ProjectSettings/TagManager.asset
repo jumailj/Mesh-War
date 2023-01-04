@@ -10,6 +10,7 @@ TagManager:
   - player
   - enemyBullet
   - PlayFab
+  - Boundry
   layers:
   - Default
   - TransparentFX

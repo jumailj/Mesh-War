@@ -30,9 +30,12 @@ public class antagonistBullet : MonoBehaviour
 
         if (other.tag == "playerShield") {
                 Destroy(this.gameObject);
-        }
-        
-    }
+        }  
 
+         if (other.gameObject.tag == "enemyBullet") { 
+                Debug.Log("collided");
+                 Destroy(this.gameObject);
+        }  
+    }
  }
     
