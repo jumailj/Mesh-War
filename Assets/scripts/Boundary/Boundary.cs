@@ -6,35 +6,30 @@ public class Boundary : MonoBehaviour
 {
 
 
+    Color fullHealthColor = Color.white;
+    Color zeroHealthColor = Color.red;
 
     public float Health = 100.0f;
     public int numberOfBullets = 5;
     public Material boundraymat;
 
-
+    float lerp = 0.0f;
     
-    //damage = 100/numberOfBullets  || 100/5 = 20
-    // health -= damage;
-
-    void Start()
-    {
-        
-    }
 
     void Update()
     {
+        lerp = Health*0.01f;
+
+        boundraymat.SetColor("_EmissionColor",Color.Lerp(zeroHealthColor, fullHealthColor, lerp));
+
         if (Health <= 0 ) {
-            gameObject.SetActive(false);
+             gameObject.SetActive(false);
         }
     }
 
     private void OnTriggerEnter(Collider other)
     { 
-
-       Debug.Log(" on trigger other : " + other.gameObject.tag);
-
        if ( other.gameObject.tag == "enemyBullet") {
-            Debug.Log("health: " + Health);
             Destroy(other.gameObject);
             Health -= 100/numberOfBullets;
        }
