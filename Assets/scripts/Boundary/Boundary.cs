@@ -5,32 +5,41 @@ using UnityEngine;
 public class Boundary : MonoBehaviour
 {
 
-    public float Health = 100.0f;
 
-    // Start is called before the first frame update
+
+    public float Health = 100.0f;
+    public int numberOfBullets = 5;
+    public Material boundraymat;
+
+
+    
+    //damage = 100/numberOfBullets  || 100/5 = 20
+    // health -= damage;
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
-                    Debug.Log("health: " + Health);
-        
+        if (Health <= 0 ) {
+            gameObject.SetActive(false);
+        }
     }
 
+    private void OnTriggerEnter(Collider other)
+    { 
 
-    void OnCollisionEnter(Collision other)
-    {
-        Debug.Log("other : " + other.gameObject.tag);
-        if (other.gameObject.tag == "enemyBullet") {
-            Debug.Log("collided");
-                 Destroy(other.gameObject);
-                Destroy(this.gameObject);
-        }  
+       Debug.Log(" on trigger other : " + other.gameObject.tag);
+
+       if ( other.gameObject.tag == "enemyBullet") {
+            Debug.Log("health: " + Health);
+            Destroy(other.gameObject);
+            Health -= 100/numberOfBullets;
+       }
+
     }
-
 
 
 }

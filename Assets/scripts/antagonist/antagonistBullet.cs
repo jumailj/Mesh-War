@@ -32,10 +32,9 @@ public class antagonistBullet : MonoBehaviour
                 Destroy(this.gameObject);
         }  
 
-         if (other.gameObject.tag == "enemyBullet") { 
-                Debug.Log("collided");
-                 Destroy(this.gameObject);
-        }  
+        //  if (other.gameObject.tag == "Boundry") { 
+        //       //     Destroy(this.gameObject);
+        // }  
     }
  }
     
