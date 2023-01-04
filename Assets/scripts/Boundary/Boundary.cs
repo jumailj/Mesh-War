@@ -15,13 +15,8 @@ public class Boundary : MonoBehaviour
 
     float lerp = 0.0f;
     
-
     void Update()
     {
-        lerp = Health*0.01f;
-
-        boundraymat.SetColor("_EmissionColor",Color.Lerp(zeroHealthColor, fullHealthColor, lerp));
-
         if (Health <= 0 ) {
              gameObject.SetActive(false);
         }
@@ -32,9 +27,9 @@ public class Boundary : MonoBehaviour
        if ( other.gameObject.tag == "enemyBullet") {
             Destroy(other.gameObject);
             Health -= 100/numberOfBullets;
+            lerp = Health*0.01f;
+            boundraymat.SetColor("_EmissionColor",Color.Lerp(zeroHealthColor, fullHealthColor, lerp));
        }
-
+       
     }
-
-
 }
