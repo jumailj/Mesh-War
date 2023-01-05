@@ -9,7 +9,7 @@ using System;
 public class logger : MonoBehaviour
 {
 
-    public protagonistManager player;
+    public ProtagonistManager player;
 
     public GameObject playerObject;
 

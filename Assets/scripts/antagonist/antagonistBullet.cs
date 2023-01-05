@@ -2,21 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class antagonistBullet : MonoBehaviour
+public class AntagonistBullet : MonoBehaviour
 {        
-            GameObject enemy;
-            antagonistManager enemymanager;
+            GameObject antagonist;
+            AntagonistManager antagonistManager;
+
     void Start()
     {
-        enemy = GameObject.FindWithTag("enemy");
-        enemymanager = enemy.GetComponent<antagonistManager>();
+        antagonist = GameObject.FindWithTag("Antagonist");
+        antagonistManager = antagonist.GetComponent<AntagonistManager>();
         //  Debug.Log(enemymanager.bulletSpeed) ;
     }
 
     void Update()
     {
-         transform.Translate(Vector3.forward* enemymanager.bulletSpeed * Time.deltaTime);    
-         transform.Rotate(Vector3.forward* enemymanager.bulletSpeed * 200 * Time.deltaTime);
+         transform.Translate(Vector3.forward* antagonistManager.bulletSpeed * Time.deltaTime);    
+         transform.Rotate(Vector3.forward* antagonistManager.bulletSpeed * 200 * Time.deltaTime);
         // Debug.Log("bullet speed: " + Enemymanager.bulletSpeed);  
 
     }
@@ -28,7 +29,7 @@ public class antagonistBullet : MonoBehaviour
                 Destroy(this.gameObject);
         }
 
-        if (other.tag == "playerShield") {
+        if (other.tag == "ProtagonistShield") {
                 Destroy(this.gameObject);
         }  
 

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using PlayFab;
 using PlayFab.ClientModels;
 using TMPro;
+using System;
 
 public class PlayfabManager : MonoBehaviour
 {
@@ -22,13 +23,18 @@ public class PlayfabManager : MonoBehaviour
     void Start()
     {
         Login();
+
+
     } 
+
+
+
 
     // Update is called once per frame
     void Login()
     {
         var request = new LoginWithCustomIDRequest {
-            CustomId = SystemInfo.deviceUniqueIdentifier,
+            CustomId = Guid.NewGuid().ToString(),
             CreateAccount = true,
             InfoRequestParameters = new GetPlayerCombinedInfoRequestParams {
                 GetPlayerProfile = true
@@ -37,17 +43,10 @@ public class PlayfabManager : MonoBehaviour
         PlayFabClientAPI.LoginWithCustomID(request, OnLoginSuccess, OnError);
     }
 
-    void OnLoginSuccess(LoginResult result) {
-        Debug.Log("Success login/account create!");
 
+    void OnLoginSuccess(LoginResult result) 
+    {
         GetScoreboard();
-
-        string name = null;
-        if(result.InfoResultPayload.PlayerProfile != null)
-            name = result.InfoResultPayload.PlayerProfile.DisplayName;
-        
-        if(name != null)
-            inputFieldName.GetComponent<TMP_InputField>().text = name;
     }
 
     public void SubmitButtonStartGame() {
@@ -68,7 +67,8 @@ public class PlayfabManager : MonoBehaviour
     }
 
     void OnError(PlayFabError error) { 
-        Debug.Log("Error while logging in/creating account!");
+        Debug.Log("Error while logging in/creating account!" + error);
+
     }
 
     public void SendScoreBoard(int score) {

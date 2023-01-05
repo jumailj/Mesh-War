@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class protagonistManager : MonoBehaviour
+public class ProtagonistManager : MonoBehaviour
 {
     public Transform enemyTarget;
     public GameObject shield;
@@ -16,7 +17,7 @@ public class protagonistManager : MonoBehaviour
     [Range(0.0f,7.0f)]
     public float bulletSpeed = 10.0f;
 
-    GameObject activeObject;
+    private GameObject activeObject;
     
     public int score;
     
@@ -35,25 +36,27 @@ public class protagonistManager : MonoBehaviour
    }
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         shield.SetActive(false);
         score = 0;
+
+        //register inputs;
+       //   protagonistController.Player.Fire.performed += Fire;
     }
 
-        void Update()
+    private void Update()
     {  
         transform.LookAt(enemyTarget);
 
         HorizontalMove(moveSpeed, 1.5f);
-        Fire();
         Shield_();
-        
+        Fire();
         gameObject.transform.RotateAround(enemyTarget.transform.position ,Vector3.up,horizontalMove);
     }
 
 
-    void HorizontalMove( float movespeed_, float speedFactor ) {
+    private void HorizontalMove( float movespeed_, float speedFactor ) {
         float move = protagonistController.Player.move.ReadValue<float>();
         float HorizontaDouble_L = protagonistController.Player.move_Double_L.ReadValue<float>();
         float HorizontaDouble_R = protagonistController.Player.move_Dobule_R.ReadValue<float>();
@@ -64,22 +67,21 @@ public class protagonistManager : MonoBehaviour
                 horizontalMove*=speedFactor;          
     }
 
-    void Fire() {
-        float fire = protagonistController.Player.Fire.ReadValue<float>();
-        if(fire != 0) 
-        {
-                activeObject = GameObject.Find("protagonistBullet(Clone)");
-                
+    private void Fire( /* InputAction.CallbackContext context */) {
+         float fire = protagonistController.Player.Fire.ReadValue<float>();
+
+            if (fire > 0) {
+                activeObject = GameObject.Find("ProtagonistBullet(Clone)");     
                 if ( activeObject == null) 
                 {
                 Instantiate(bullet,spawnTransform.position, spawnTransform.rotation);
                 }
-        }
+            }        
     }
 
     void Shield_() {
-        float shield_key = protagonistController.Player.Shield.ReadValue<float>();
-
+         float shield_key = protagonistController.Player.Shield.ReadValue<float>();
+    
              if ( shield_key != 0) {
                 
                 if ( shieldcharge >= 1) {
