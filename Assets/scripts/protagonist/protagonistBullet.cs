@@ -2,51 +2,45 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class protagonistBullet : MonoBehaviour
+public class ProtagonistBullet : MonoBehaviour
 {
     // Start is called before the first frame update
     GameObject PlayFab;
-    GameObject player;
+    GameObject Protagonist;
 
 
     // Use this for initialization
 
     PlayfabManager PlayfabManager;
-    protagonistManager playermanager;
+    ProtagonistManager protagonistmanager;
 
     void Start()
     {
         PlayFab = GameObject.FindWithTag("PlayFab");
         PlayfabManager = PlayFab.GetComponent<PlayfabManager>(); 
 
-        player = GameObject.FindWithTag("player");
-        playermanager = player.GetComponent<protagonistManager>();   
-
-        // Debug.Log("player bullet init");  
-        // Debug.Log(player);
+        Protagonist = GameObject.FindWithTag("Protagonist");
+        protagonistmanager = Protagonist.GetComponent<ProtagonistManager>();   
     }
 
-    // Update is called once per frame
     void Update()
     {
-         transform.Translate(Vector3.forward* playermanager.bulletSpeed * Time.deltaTime);    
-         transform.Rotate(Vector3.forward* playermanager.bulletSpeed * 200 * Time.deltaTime);
-        //  Debug.Log("bullet speed: " + playermanager.bulletSpeed);  
-
+         transform.Translate(Vector3.forward* protagonistmanager.bulletSpeed * Time.deltaTime);    
+         transform.Rotate(Vector3.forward* protagonistmanager.bulletSpeed * 200 * Time.deltaTime);
     }
   
     private void OnTriggerEnter(Collider other)
     {    
-        if (other.tag == "enemy") {
+        if (other.tag == "Antagonist") {
             Destroy(this.gameObject);
-            playermanager.score += 1;
+            protagonistmanager.score += 1;
         }
 
-        if (other.tag == "enemyBullet") {
+        if (other.tag == "AntagonistBullet") {
             Destroy(other.gameObject);
             Destroy(this.gameObject);
-            Debug.Log(playermanager.score);
-            PlayfabManager.SendScoreBoard(playermanager.score);
+            Debug.Log(protagonistmanager.score);
+            PlayfabManager.SendScoreBoard(protagonistmanager.score);
         }
     }
 }

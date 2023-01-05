@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 7835751592168674866}
   - component: {fileID: 1444040361406811891}
   - component: {fileID: 2226402880304094141}
-  - component: {fileID: -6823723909884972546}
   - component: {fileID: 1213545332962050910}
+  - component: {fileID: 7202993796646615746}
   m_Layer: 0
-  m_Name: antagonistBullet
-  m_TagString: enemyBullet
+  m_Name: AntagonistBullet
+  m_TagString: AntagonistBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -103,18 +103,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 8
   m_CollisionDetection: 0
---- !u!114 &-6823723909884972546
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3913755053480866385}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd6ec694071f9f644ab8036e77074ae1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &1213545332962050910
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -128,6 +116,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7202993796646615746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3913755053480866385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd6ec694071f9f644ab8036e77074ae1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7336816653161078271
 GameObject:
   m_ObjectHideFlags: 0
