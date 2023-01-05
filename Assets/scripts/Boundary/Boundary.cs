@@ -12,6 +12,10 @@ public class Boundary : MonoBehaviour
     public Material boundrayMat;
 
     float lerp = 0.0f;
+
+    void Start() {
+             gameObject.SetActive(false);
+    }
     
     void Update()
     {

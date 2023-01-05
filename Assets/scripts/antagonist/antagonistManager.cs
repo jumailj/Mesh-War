@@ -28,6 +28,7 @@ public class AntagonistManager : MonoBehaviour
      List<Int32> firingAnagleList = new List<Int32>();
 
     void Start() {
+        gameObject.SetActive(false);
           Application.targetFrameRate = 500;
     }
 
@@ -83,21 +84,18 @@ public class AntagonistManager : MonoBehaviour
          }
          }
 
-         
-
          int angle = Convert.ToInt32(transform.localRotation.eulerAngles.y);
         if (firingAnagleList.Contains(angle)) 
         {
                 // reduce duplicate firing.
                 firingAnagleList.Remove(angle);
+
                 // spawn bullets;
-                fire();
+                Instantiate(bullet, SpawnTransform.position, SpawnTransform.rotation);
+
         }
     }
 
-    void fire() {
-        Instantiate(bullet, SpawnTransform.position, SpawnTransform.rotation);
-    }
 
     void RotateObject(float seconds) 
     {

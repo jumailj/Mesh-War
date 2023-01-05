@@ -16,6 +16,10 @@ public class PlayfabManager : MonoBehaviour
     public GameObject buttonStartGame;
     public GameObject inputFieldName;
 
+    public GameObject boundary;
+    public GameObject protagonist;
+    public GameObject antagonist; 
+
     public Transform entryContainer;
     public Transform entryTemplate;
 
@@ -23,12 +27,7 @@ public class PlayfabManager : MonoBehaviour
     void Start()
     {
         Login();
-
-
     } 
-
-
-
 
     // Update is called once per frame
     void Login()
@@ -59,6 +58,12 @@ public class PlayfabManager : MonoBehaviour
             DisplayName = inputName,
         };
         PlayFabClientAPI.UpdateUserTitleDisplayName(request, OnDisplayNameUpdate, OnError);
+
+        // enable;
+        boundary.SetActive(true);
+        protagonist.SetActive(true);
+        antagonist.SetActive(true);
+
     }
 
     void OnDisplayNameUpdate(UpdateUserTitleDisplayNameResult result) {
