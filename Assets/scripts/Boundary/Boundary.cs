@@ -17,9 +17,12 @@ public class Boundary : MonoBehaviour
     float lerp = 0.0f;
 
     void Start() {
-             gameObject.SetActive(false);
              // reset boundary color to white. before game start. to avoid last section Material save.
-             boundrayMat.SetColor("_EmissionColor", fullHealthColor);
+             ResetColor();
+    }
+
+    public void ResetColor() {
+            boundrayMat.SetColor("_EmissionColor", fullHealthColor);
     }
     
     void Update()

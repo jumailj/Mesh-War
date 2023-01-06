@@ -16,9 +16,7 @@ public class PlayfabManager : MonoBehaviour
     public GameObject buttonStartGame;
     public GameObject inputFieldName;
 
-    public GameObject boundary;
-    public GameObject protagonist;
-    public GameObject antagonist; 
+    public GameManager gamerManger;
 
     public Transform entryContainer;
     public Transform entryTemplate;
@@ -59,10 +57,9 @@ public class PlayfabManager : MonoBehaviour
         };
         PlayFabClientAPI.UpdateUserTitleDisplayName(request, OnDisplayNameUpdate, OnError);
 
+
+        gamerManger.StartGame();
         // enable;
-        boundary.SetActive(true);
-        protagonist.SetActive(true);
-        antagonist.SetActive(true);
 
     }
 

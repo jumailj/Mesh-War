@@ -28,8 +28,7 @@ public class AntagonistManager : MonoBehaviour
      List<Int32> firingAnagleList = new List<Int32>();
 
     void Start() {
-        gameObject.SetActive(false);
-          Application.targetFrameRate = 500;
+         
     }
 
     void Update()
