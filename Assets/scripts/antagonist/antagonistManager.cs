@@ -48,15 +48,16 @@ public class AntagonistManager : MonoBehaviour
         */
 
         //Debug.Log(transform.localRotation.y);
-        // if the rotation angle is between 0 and 9 it's on firing state
-        if (transform.localRotation.y >= 0) {
+        
+         // if the rotation angle is between 0 and -9 it's on holding state
+        if (transform.localRotation.y < 0) {
                 RotateObject(firingTime);
                 FireProjitile();
                 
             //Debug.Log(count);
 
-        // if the rotation angle is between 0 and -9 it's on holding state
-        } else if ( transform.localRotation.y < 0) {
+       // if the rotation angle is between 0 and 9 it's on firing state
+        } else if ( transform.localRotation.y >= 0) {
                 isNumberGenerated = false;
                 firingAnagleList.Clear();
                 RotateObject(holdingTime);
@@ -92,7 +93,6 @@ public class AntagonistManager : MonoBehaviour
 
                 // spawn bullets;
                 Instantiate(bullet, SpawnTransform.position, SpawnTransform.rotation);
-
         }
     }
 

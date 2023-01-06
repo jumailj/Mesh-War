@@ -10,14 +10,13 @@ public class ProtagonistBullet : MonoBehaviour
 
 
     // Use this for initialization
-
-    PlayfabManager PlayfabManager;
+    PlayfabManager playfabManager;
     ProtagonistManager protagonistmanager;
 
     void Start()
     {
         PlayFab = GameObject.FindWithTag("PlayFab");
-        PlayfabManager = PlayFab.GetComponent<PlayfabManager>(); 
+        playfabManager = PlayFab.GetComponent<PlayfabManager>(); 
 
         Protagonist = GameObject.FindWithTag("Protagonist");
         protagonistmanager = Protagonist.GetComponent<ProtagonistManager>();   
@@ -33,14 +32,15 @@ public class ProtagonistBullet : MonoBehaviour
     {    
         if (other.tag == "Antagonist") {
             Destroy(this.gameObject);
-            protagonistmanager.score += 1;
+            
         }
 
         if (other.tag == "AntagonistBullet") {
             Destroy(other.gameObject);
             Destroy(this.gameObject);
             Debug.Log(protagonistmanager.score);
-            PlayfabManager.SendScoreBoard(protagonistmanager.score);
+            protagonistmanager.score += 1;
+            
         }
     }
 }

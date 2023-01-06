@@ -110,6 +110,7 @@ public class PlayfabManager : MonoBehaviour
             entryRectTransform.anchoredPosition = new Vector2(0, -templateHeight * item.Position);
             entryTransform.Find("LPlayer").GetComponent<TMP_Text>().text = item.DisplayName;
             entryTransform.Find("LScore").GetComponent<TMP_Text>().text = item.StatValue.ToString();
+
         }
     }
 }
