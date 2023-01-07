@@ -34,35 +34,47 @@ public class GameManager : MonoBehaviour
     void Start() {    
         Application.targetFrameRate = 500;
         setDefaultActive();
-   
     }
 
     void setDefaultActive() {
         boundary.SetActive(false);
         protagonist.SetActive(false);
-        antagonist.SetActive(false); 
+    //     antagonist.SetActive(false); 
         gameOver.SetActive(false);
     }
 
 
-    public IEnumerator StartIntro()
+    public void StartIntro()
     {
+        DestroyBullets();
         //yield on a new YieldInstruction that waits for 5 seconds.
-        yield return new WaitForSeconds(1);
+     //    yield return new WaitForSeconds(1); 
          StartGame();
-
     }
 
 
     public void StartGame() {
+        
         Debug.Log("started game ");
 
+        // delete previous bullets;
 
         // add some delay();
         boundary.SetActive(true);
         protagonist.SetActive(true);
         antagonist.SetActive(true);
     }
+
+    void DestroyBullets() {
+
+        GameObject[] Bullets =  GameObject.FindGameObjectsWithTag("AntagonistBullet");  //returns GameObject[]
+
+        foreach(GameObject go in Bullets)
+            if (go.activeInHierarchy) {
+                    Destroy(go);
+                    Debug.Log(go);
+            }          
+  }
 
 
     public void BackToMainMenu() {
@@ -72,10 +84,9 @@ public class GameManager : MonoBehaviour
         setDefaultActive();
     }
 
-
-    
+ 
     void Update() {
-
+        
         UiHealthBar.fillAmount = _boundary.Health * 0.01f;
         UiShieldBar.fillAmount = protagonistManager.shieldcharge* 0.01f;
 
@@ -100,8 +111,6 @@ public class GameManager : MonoBehaviour
         }
 
     }
-
-
 
 
 }

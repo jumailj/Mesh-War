@@ -57,7 +57,8 @@ public class PlayfabManager : MonoBehaviour
         };
         PlayFabClientAPI.UpdateUserTitleDisplayName(request, OnDisplayNameUpdate, OnError);
 
-        StartCoroutine( gamerManger.StartIntro());
+       //  StartCoroutine( gamerManger.StartIntro());
+        gamerManger.StartIntro();
          
     }
 
