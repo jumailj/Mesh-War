@@ -16,6 +16,8 @@ public class PlayfabManager : MonoBehaviour
     public GameObject buttonStartGame;
     public GameObject inputFieldName;
 
+    public GameManager gamerManger;
+
     public Transform entryContainer;
     public Transform entryTemplate;
 
@@ -23,12 +25,7 @@ public class PlayfabManager : MonoBehaviour
     void Start()
     {
         Login();
-
-
     } 
-
-
-
 
     // Update is called once per frame
     void Login()
@@ -59,7 +56,12 @@ public class PlayfabManager : MonoBehaviour
             DisplayName = inputName,
         };
         PlayFabClientAPI.UpdateUserTitleDisplayName(request, OnDisplayNameUpdate, OnError);
+
+       //  StartCoroutine( gamerManger.StartIntro());
+        gamerManger.StartIntro();
+         
     }
+
 
     void OnDisplayNameUpdate(UpdateUserTitleDisplayNameResult result) {
         Debug.Log("Updated display name");
@@ -105,6 +107,7 @@ public class PlayfabManager : MonoBehaviour
             entryRectTransform.anchoredPosition = new Vector2(0, -templateHeight * item.Position);
             entryTransform.Find("LPlayer").GetComponent<TMP_Text>().text = item.DisplayName;
             entryTransform.Find("LScore").GetComponent<TMP_Text>().text = item.StatValue.ToString();
+
         }
     }
 }

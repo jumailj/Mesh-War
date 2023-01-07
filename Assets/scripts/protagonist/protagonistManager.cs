@@ -38,6 +38,7 @@ public class ProtagonistManager : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+ 
         shield.SetActive(false);
         score = 0;
 

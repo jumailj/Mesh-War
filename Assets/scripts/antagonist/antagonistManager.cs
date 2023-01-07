@@ -28,7 +28,7 @@ public class AntagonistManager : MonoBehaviour
      List<Int32> firingAnagleList = new List<Int32>();
 
     void Start() {
-          Application.targetFrameRate = 500;
+         
     }
 
     void Update()
@@ -47,15 +47,16 @@ public class AntagonistManager : MonoBehaviour
         */
 
         //Debug.Log(transform.localRotation.y);
-        // if the rotation angle is between 0 and 9 it's on firing state
-        if (transform.localRotation.y >= 0) {
+        
+         // if the rotation angle is between 0 and -9 it's on holding state
+        if (transform.localRotation.y < 0) {
                 RotateObject(firingTime);
                 FireProjitile();
                 
             //Debug.Log(count);
 
-        // if the rotation angle is between 0 and -9 it's on holding state
-        } else if ( transform.localRotation.y < 0) {
+       // if the rotation angle is between 0 and 9 it's on firing state
+        } else if ( transform.localRotation.y >= 0) {
                 isNumberGenerated = false;
                 firingAnagleList.Clear();
                 RotateObject(holdingTime);
@@ -83,21 +84,17 @@ public class AntagonistManager : MonoBehaviour
          }
          }
 
-         
-
          int angle = Convert.ToInt32(transform.localRotation.eulerAngles.y);
         if (firingAnagleList.Contains(angle)) 
         {
                 // reduce duplicate firing.
                 firingAnagleList.Remove(angle);
+
                 // spawn bullets;
-                fire();
+                Instantiate(bullet, SpawnTransform.position, SpawnTransform.rotation);
         }
     }
 
-    void fire() {
-        Instantiate(bullet, SpawnTransform.position, SpawnTransform.rotation);
-    }
 
     void RotateObject(float seconds) 
     {
