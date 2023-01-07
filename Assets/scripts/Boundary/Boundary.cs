@@ -11,10 +11,10 @@ public class Boundary : MonoBehaviour
     Color zeroHealthColor = Color.red;
 
     public float Health = 100.0f;
+    // private float HealthInDecimal = 1.0f; 
     public int numberOfBullets = 5;
     public Material boundrayMat;
 
-    float lerp = 0.0f;
 
     void Start() {
              // reset boundary color to white. before game start. to avoid last section Material save.
@@ -40,9 +40,9 @@ public class Boundary : MonoBehaviour
 
             Destroy(other.gameObject);     
             Health -= 100/numberOfBullets;
-            lerp = Health*0.01f;
+          //   HealthInDecimal = Health*0.01f;
 
-            boundrayMat.SetColor("_EmissionColor",Color.Lerp(zeroHealthColor, fullHealthColor, lerp));
+            boundrayMat.SetColor("_EmissionColor",Color.Lerp(zeroHealthColor, fullHealthColor, Health * 0.01f));
        }
        
     }

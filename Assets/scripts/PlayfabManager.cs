@@ -57,11 +57,10 @@ public class PlayfabManager : MonoBehaviour
         };
         PlayFabClientAPI.UpdateUserTitleDisplayName(request, OnDisplayNameUpdate, OnError);
 
-
-        gamerManger.StartGame();
-        // enable;
-
+        StartCoroutine( gamerManger.StartIntro());
+         
     }
+
 
     void OnDisplayNameUpdate(UpdateUserTitleDisplayNameResult result) {
         Debug.Log("Updated display name");
