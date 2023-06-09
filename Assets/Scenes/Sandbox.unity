@@ -803,6 +803,7 @@ MonoBehaviour:
   UiHealthBar: {fileID: 449179122}
   UiShieldBar: {fileID: 1284315080}
   protagonistManager: {fileID: 756006955}
+  antagonistManager: {fileID: 1653649670}
   _boundary: {fileID: 229691597}
 --- !u!1 &229691596 stripped
 GameObject:
@@ -2438,10 +2439,10 @@ MonoBehaviour:
   shield: {fileID: 849006397}
   shieldcharge: 100
   moveSpeed: 40
-  horizontalMove: 0
+  horizontalMove: 10
   spawnTransform: {fileID: 1868474619}
   bullet: {fileID: 5941424036094835063, guid: 940f69b6a4051f34eb3f5fb8a1609da9, type: 3}
-  bulletSpeed: 5
+  bulletSpeed: 10
   score: 0
 --- !u!114 &756006956
 MonoBehaviour:
@@ -4764,10 +4765,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpawnTransform: {fileID: 531135749}
   bullet: {fileID: 3913755053480866385, guid: 59d6d182ae8c45d498f7d3b3d9b96bb1, type: 3}
-  bulletSpeed: 1
-  firingTime: 1
-  holdingTime: 2
-  bulletPerSeconds: 2
+  bulletSpeed: 1.18
+  firingTime: 4.4
+  holdingTime: 4
+  bulletPerSeconds: 4
 --- !u!1 &1665633462
 GameObject:
   m_ObjectHideFlags: 0
