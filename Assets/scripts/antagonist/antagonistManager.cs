@@ -20,6 +20,8 @@ public class AntagonistManager : MonoBehaviour
     [Range(1,50)]
     public float holdingTime = 10.0f;
 
+
+    [Tooltip("Health value between 0 and 100.")]
     [Range(1,40)]
     public  int bulletPerSeconds = 2;
 
