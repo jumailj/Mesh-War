@@ -5,7 +5,13 @@ TagManager:
   serializedVersion: 2
   tags:
   - bulletDespawner
-  - enemy
+  - playerShield
+  - PlayFab
+  - Boundry
+  - Protagonist
+  - Antagonist
+  - AntagonistBullet
+  - ProtagonistShield
   layers:
   - Default
   - TransparentFX
