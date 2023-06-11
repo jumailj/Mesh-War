@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Threading;
 
 public class AntagonistManager : MonoBehaviour
 {
@@ -11,7 +12,11 @@ public class AntagonistManager : MonoBehaviour
     //bullet prefab object;
     public GameObject bullet;
 
-        //set bullet speed
+    public Animator animator;
+    private float time = 0.0f;
+    private float value = 0.0f;
+
+    //set bullet speed
     [Range(0.0f,7.0f)]
     public float bulletSpeed = 0.0f;
 
@@ -49,19 +54,22 @@ public class AntagonistManager : MonoBehaviour
         */
 
         //Debug.Log(transform.localRotation.y);
+
         
-         // if the rotation angle is between 0 and -9 it's on holding state
+        // if the rotation angle is between 0 and 9 it's on firing state
         if (transform.localRotation.y < 0) {
+            time = 0.0f;
                 RotateObject(firingTime);
                 FireProjitile();
-                
-            //Debug.Log(count);
+                FiringAnimation();
 
-       // if the rotation angle is between 0 and 9 it's on firing state
-        } else if ( transform.localRotation.y >= 0) {
+        }
+        // if the rotation angle is between 0 and -9 it's on holding state   
+        else if ( transform.localRotation.y >= 0) {
                 isNumberGenerated = false;
                 firingAnagleList.Clear();
                 RotateObject(holdingTime);
+                IdelAnimation();
         }
     }
 
@@ -89,7 +97,7 @@ public class AntagonistManager : MonoBehaviour
          int angle = Convert.ToInt32(transform.localRotation.eulerAngles.y);
         if (firingAnagleList.Contains(angle)) 
         {
-                // reduce duplicate firing.
+                // remove duplicate firing angle.
                 firingAnagleList.Remove(angle);
 
                 // spawn bullets;
@@ -105,6 +113,31 @@ public class AntagonistManager : MonoBehaviour
        //  Debug.Log((360 * Time.deltaTime) / seconds);
         // multiply 360 by Time.deltatime give us 360 full rotaiton in 1 seconds.
         // dividing it by seconds to reduce the rotation angle in each steps;
+    }
+
+    //firing-animatino, which start after the idel state.
+    void FiringAnimation()
+    {
+        if (animator != null)
+        {
+            animator.CrossFade("Start_Firing", 0);
+        }
+
+    }
+
+    // ideal animation, plays when antagonist after firing state.
+    void IdelAnimation()
+    {
+        if (animator != null)
+        {
+            // blending between stop-firing state and idel state.
+            animator.SetFloat("Idel", value);
+            // play stop-firing(blend) animation.
+            animator.Play("Stop_Firing");
+            value = Mathf.Lerp(0, 10, time / 10);
+            Debug.Log(value);
+            time += Time.deltaTime;
+        }
     }
 
 

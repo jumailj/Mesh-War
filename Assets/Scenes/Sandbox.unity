@@ -805,6 +805,67 @@ MonoBehaviour:
   protagonistManager: {fileID: 756006955}
   antagonistManager: {fileID: 1653649670}
   _boundary: {fileID: 229691597}
+--- !u!1001 &218238323
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1653649669}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: f8ac93f2a6b7a6f4ab4d2b28d9a30a67, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f8ac93f2a6b7a6f4ab4d2b28d9a30a67, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f8ac93f2a6b7a6f4ab4d2b28d9a30a67, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f8ac93f2a6b7a6f4ab4d2b28d9a30a67, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f8ac93f2a6b7a6f4ab4d2b28d9a30a67, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f8ac93f2a6b7a6f4ab4d2b28d9a30a67, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f8ac93f2a6b7a6f4ab4d2b28d9a30a67, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f8ac93f2a6b7a6f4ab4d2b28d9a30a67, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f8ac93f2a6b7a6f4ab4d2b28d9a30a67, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f8ac93f2a6b7a6f4ab4d2b28d9a30a67, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f8ac93f2a6b7a6f4ab4d2b28d9a30a67, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -1882059377643665979, guid: f8ac93f2a6b7a6f4ab4d2b28d9a30a67, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3785ef5bfdd4f0a45b44717d88929306, type: 2}
+    - target: {fileID: 919132149155446097, guid: f8ac93f2a6b7a6f4ab4d2b28d9a30a67, type: 3}
+      propertyPath: m_Name
+      value: antogonist
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f8ac93f2a6b7a6f4ab4d2b28d9a30a67, type: 3}
 --- !u!1 &229691596 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b63ebb0e307757d4ab73170e47f3a850, type: 3}
@@ -3969,7 +4030,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1351217594}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.92, z: -0.001}
+  m_LocalPosition: {x: 0, y: 1.56, z: -0.002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3987,8 +4048,8 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 3.87
+  m_Color: {r: 0.1372549, g: 0.946054, b: 1, a: 1}
+  m_Intensity: 14.33
   m_Range: 3.33
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -4560,6 +4621,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1480743054}
   m_CullTransparentMesh: 1
+--- !u!1 &1519632192 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: f8ac93f2a6b7a6f4ab4d2b28d9a30a67, type: 3}
+  m_PrefabInstance: {fileID: 218238323}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1519632193 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f8ac93f2a6b7a6f4ab4d2b28d9a30a67, type: 3}
+  m_PrefabInstance: {fileID: 218238323}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1519632194
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1519632192}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cfd625d2840047b4f810f3a2314658c5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &1634516784
 GameObject:
   m_ObjectHideFlags: 0
@@ -4660,7 +4751,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1653649669}
-  - component: {fileID: 1653649668}
   - component: {fileID: 1653649667}
   - component: {fileID: 1653649666}
   - component: {fileID: 1653649670}
@@ -4726,14 +4816,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &1653649668
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1653649665}
-  m_Mesh: {fileID: -3658666328173040858, guid: b45ef43f2f058a640b10f7ff6f4e529d, type: 3}
 --- !u!4 &1653649669
 Transform:
   m_ObjectHideFlags: 0
@@ -4748,6 +4830,7 @@ Transform:
   m_Children:
   - {fileID: 531135749}
   - {fileID: 1351217595}
+  - {fileID: 1519632193}
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4765,6 +4848,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpawnTransform: {fileID: 531135749}
   bullet: {fileID: 3913755053480866385, guid: 59d6d182ae8c45d498f7d3b3d9b96bb1, type: 3}
+  animator: {fileID: 1519632194}
   bulletSpeed: 1.18
   firingTime: 4.4
   holdingTime: 4
