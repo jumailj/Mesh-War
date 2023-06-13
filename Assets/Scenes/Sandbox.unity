@@ -4852,8 +4852,8 @@ MonoBehaviour:
   animator: {fileID: 1519632194}
   bulletSpeed: 3.34
   firingTime: 5
-  holdingTime: 10
-  bulletPerSeconds: 6
+  holdingTime: 6
+  bulletPerSeconds: 4
 --- !u!1 &1665633462
 GameObject:
   m_ObjectHideFlags: 0
