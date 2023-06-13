@@ -135,7 +135,7 @@ public class AntagonistManager : MonoBehaviour
             // play stop-firing(blend) animation.
             animator.Play("Stop_Firing");
             value = Mathf.Lerp(0, 10, time / 10);
-            Debug.Log(value);
+           // Debug.Log(value);
             time += Time.deltaTime;
         }
     }
