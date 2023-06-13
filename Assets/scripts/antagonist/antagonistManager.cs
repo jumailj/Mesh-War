@@ -18,7 +18,7 @@ public class AntagonistManager : MonoBehaviour
 
     //set bullet speed
     [Range(0.0f,7.0f)]
-    public float bulletSpeed = 0.0f;
+    public float bulletSpeed = 10.0f;
 
     [Range(1,50)]
     public float firingTime = 5.0f;
@@ -135,7 +135,7 @@ public class AntagonistManager : MonoBehaviour
             // play stop-firing(blend) animation.
             animator.Play("Stop_Firing");
             value = Mathf.Lerp(0, 10, time / 10);
-            Debug.Log(value);
+           // Debug.Log(value);
             time += Time.deltaTime;
         }
     }
