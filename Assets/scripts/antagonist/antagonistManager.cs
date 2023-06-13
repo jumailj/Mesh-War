@@ -18,7 +18,7 @@ public class AntagonistManager : MonoBehaviour
 
     //set bullet speed
     [Range(0.0f,7.0f)]
-    public float bulletSpeed = 0.0f;
+    public float bulletSpeed = 10.0f;
 
     [Range(1,50)]
     public float firingTime = 5.0f;

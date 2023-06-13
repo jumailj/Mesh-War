@@ -2501,10 +2501,10 @@ MonoBehaviour:
   shield: {fileID: 849006397}
   shieldcharge: 100
   moveSpeed: 40
-  horizontalMove: 10
+  horizontalMove: 0
   spawnTransform: {fileID: 1868474619}
   bullet: {fileID: 5941424036094835063, guid: 940f69b6a4051f34eb3f5fb8a1609da9, type: 3}
-  bulletSpeed: 10
+  bulletSpeed: 7
   score: 0
 --- !u!114 &756006956
 MonoBehaviour:
@@ -4850,10 +4850,10 @@ MonoBehaviour:
   SpawnTransform: {fileID: 531135749}
   bullet: {fileID: 3913755053480866385, guid: 59d6d182ae8c45d498f7d3b3d9b96bb1, type: 3}
   animator: {fileID: 1519632194}
-  bulletSpeed: 1.18
-  firingTime: 4.4
-  holdingTime: 4
-  bulletPerSeconds: 4
+  bulletSpeed: 3.34
+  firingTime: 5
+  holdingTime: 10
+  bulletPerSeconds: 6
 --- !u!1 &1665633462
 GameObject:
   m_ObjectHideFlags: 0
