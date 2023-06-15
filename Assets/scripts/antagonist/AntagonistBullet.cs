@@ -4,38 +4,48 @@ using UnityEngine;
 
 public class AntagonistBullet : MonoBehaviour
 {        
-            GameObject antagonist;
+
+    /* AntagonistBullet is a prefab. dan't drop referance to prefab.*/
+            GameObject antagonistObject;
             AntagonistManager antagonistManager;
+
+
+            GameObject protagonisObject;
+            ProtagonistManager protagonistManager;
+
 
     void Start()
     {
-        antagonist = GameObject.FindWithTag("Antagonist");
-        antagonistManager = antagonist.GetComponent<AntagonistManager>();
-        //  Debug.Log(enemymanager.bulletSpeed) ;
+        antagonistObject = GameObject.FindWithTag("Antagonist");
+        antagonistManager = antagonistObject.GetComponent<AntagonistManager>();
+
+        if(GameObject.FindWithTag("Protagonist")!= null)
+        {
+            protagonisObject = GameObject.FindWithTag("Protagonist");
+            protagonistManager = protagonisObject.GetComponent<ProtagonistManager>();
+        }  
     }
 
     void Update()
     {
          transform.Translate(Vector3.forward* antagonistManager.bulletSpeed * Time.deltaTime);    
          transform.Rotate(Vector3.forward* antagonistManager.bulletSpeed * 200 * Time.deltaTime);
-        // Debug.Log("bullet speed: " + Enemymanager.bulletSpeed);  
-
     }
 
     // collision;
     private void OnTriggerEnter(Collider other)
     {    
-        if (other.tag == "bulletDespawner") {
+        if (other.tag == "bulletDespawner") 
+        {
                 Destroy(this.gameObject);
         }
 
-        if (other.tag == "ProtagonistShield") {
-                Destroy(this.gameObject);
-        }  
-
-        //  if (other.gameObject.tag == "Boundry") { 
-        //       //     Destroy(this.gameObject);
-        // }  
+        if (other.tag == "ProtagonistShield")
+        {     
+                protagonistManager.score += 1;      
+               Destroy(this.gameObject);
+            
+        }   
     }
  }
     

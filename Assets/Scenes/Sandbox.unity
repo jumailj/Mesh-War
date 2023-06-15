@@ -805,6 +805,7 @@ MonoBehaviour:
   protagonistManager: {fileID: 756006955}
   antagonistManager: {fileID: 1653649670}
   _boundary: {fileID: 229691597}
+  playfabManager: {fileID: 1904561149}
 --- !u!1001 &218238323
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -885,9 +886,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playfabManager: {fileID: 1904561149}
   protagonistmanager: {fileID: 756006955}
-  groundMat: {fileID: 2100000, guid: cfa17381fba8fee4d9c745acc4c461e2, type: 2}
   Health: 100
   numberOfBullets: 10
+  groundMat: {fileID: 2100000, guid: cfa17381fba8fee4d9c745acc4c461e2, type: 2}
   boundrayMat: {fileID: 2100000, guid: 52822e75454188b46a932c25003d3c2f, type: 2}
 --- !u!64 &229691598
 MeshCollider:
@@ -3321,7 +3322,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!64 &1138221462
 MeshCollider:
@@ -4850,10 +4851,10 @@ MonoBehaviour:
   SpawnTransform: {fileID: 531135749}
   bullet: {fileID: 3913755053480866385, guid: 59d6d182ae8c45d498f7d3b3d9b96bb1, type: 3}
   animator: {fileID: 1519632194}
-  bulletSpeed: 3.34
-  firingTime: 5
-  holdingTime: 6
-  bulletPerSeconds: 4
+  bulletSpeed: 1
+  firingTime: 6
+  holdingTime: 5
+  bulletPerRotation: 4
 --- !u!1 &1665633462
 GameObject:
   m_ObjectHideFlags: 0
@@ -5219,7 +5220,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 863862e333ac2154eb5ae2cbd02456a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 756006955}
+  protagonist: {fileID: 756006955}
+  antagonist: {fileID: 1653649670}
   playerObject: {fileID: 756006949}
   fpsText: {fileID: 2110651358}
 --- !u!4 &1806239101
@@ -6048,7 +6050,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1d26728f13562e4458f8c945942b1bf3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5
+      value: -7.04
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1d26728f13562e4458f8c945942b1bf3, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6056,7 +6058,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1d26728f13562e4458f8c945942b1bf3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -26.9
+      value: -24.25
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1d26728f13562e4458f8c945942b1bf3, type: 3}
       propertyPath: m_LocalRotation.w
@@ -6167,7 +6169,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4294966362
   m_fontColor: {r: 0.3537736, g: 0.9872123, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -6266,7 +6268,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -6275,11 +6277,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 20
+    m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
-    m_MaxSize: 73
+    m_MaxSize: 300
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -6288,9 +6290,20 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Fps : 999
 
+
+    Protagonist:
+
     Shield: 999
 
-    Player Speed: 99'
+    Player Speed: 99
+
+    BulletSpeed:
+    99
+
+
+    Antagonist
+
+    hello'
 --- !u!222 &2110651359
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6314,10 +6327,10 @@ RectTransform:
   m_Father: {fileID: 1959688125}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 134.75533, y: -71.37274}
-  m_SizeDelta: {x: 269.5107, y: 142.7456}
+  m_AnchoredPosition: {x: 134.75533, y: 0}
+  m_SizeDelta: {x: 269.5107, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2145980386
 GameObject:

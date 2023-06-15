@@ -38,9 +38,9 @@ public class ProtagonistBullet : MonoBehaviour
         if (other.tag == "AntagonistBullet") {
             Destroy(other.gameObject);
             Destroy(this.gameObject);
-            Debug.Log(protagonistmanager.score);
-            protagonistmanager.score += 1;
-            
+            protagonistmanager.score += 1;    
         }
+
+
     }
 }

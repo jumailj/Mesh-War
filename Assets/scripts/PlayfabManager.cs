@@ -6,6 +6,8 @@ using PlayFab;
 using PlayFab.ClientModels;
 using TMPro;
 using System;
+using System.Linq;
+using JetBrains.Annotations;
 
 public class PlayfabManager : MonoBehaviour
 {
@@ -20,6 +22,8 @@ public class PlayfabManager : MonoBehaviour
 
     public Transform entryContainer;
     public Transform entryTemplate;
+
+     List<Transform> entryTransformList = new List<Transform>();
 
     // Start is called before the first frame update
     void Start()
@@ -99,15 +103,29 @@ public class PlayfabManager : MonoBehaviour
     
     void OnScoreBoardGet(GetLeaderboardResult result) {
         float templateHeight = 30f;
-        foreach (var item in result.Leaderboard) {
-            Debug.Log(item.Position + " " + item.DisplayName + " " + item.StatValue);
 
-            Transform entryTransform = Instantiate(entryTemplate, entryContainer);    
-            RectTransform entryRectTransform = entryTransform.GetComponent<RectTransform>();
+           // destory object from the list;
+           foreach (var iteam in entryTransformList)
+           {
+                   Destroy(iteam.gameObject);
+           }
+
+           // clear the list;
+           entryTransformList.Clear();
+        
+
+        foreach (var item in result.Leaderboard) {
+       //     Debug.Log(item.Position + " " + item.DisplayName + " " + item.StatValue);
+
+            entryTransformList.Add(Instantiate(entryTemplate, entryContainer));
+            RectTransform entryRectTransform = entryTransformList.Last().GetComponent<RectTransform>();
+
             entryRectTransform.anchoredPosition = new Vector2(0, -templateHeight * item.Position);
-            entryTransform.Find("LPlayer").GetComponent<TMP_Text>().text = item.DisplayName;
-            entryTransform.Find("LScore").GetComponent<TMP_Text>().text = item.StatValue.ToString();
+
+            entryTransformList.Last().Find("LPlayer").GetComponent<TMP_Text>().text = item.DisplayName;
+            entryTransformList.Last().Find("LScore").GetComponent<TMP_Text>().text = item.StatValue.ToString();
 
         }
+        Debug.Log("HighScore Data retrived!");
     }
 }

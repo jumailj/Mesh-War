@@ -11,32 +11,35 @@ public class AntagonistManager : MonoBehaviour
 
     //bullet prefab object;
     public GameObject bullet;
-
+    
     public Animator animator;
+
     private float time = 0.0f;
     private float value = 0.0f;
 
-    //set bullet speed
+
+    //Antagonist-Properties.
+    [Tooltip("Bullet Speed")]
     [Range(0.0f,7.0f)]
-    public float bulletSpeed = 10.0f;
+    public float bulletSpeed = 1.0f;
 
-    [Range(1,50)]
-    public float firingTime = 5.0f;
-    [Range(1,50)]
-    public float holdingTime = 10.0f;
+    [Tooltip("Firing time in Seconds")]
+    [Range(1,10)]
+    public float firingTime = 6.0f;
 
+    [Tooltip("Holding time in Seconds")]
+    [Range(1,10)]
+    public float holdingTime = 5.0f;
 
-    [Tooltip("Health value between 0 and 100.")]
-    [Range(1,40)]
-    public  int bulletPerSeconds = 2;
+    [Tooltip("Number of Bullets per Rotation.")]
+    [Range(1,20)]
+    public int bulletPerRotation = 4;
+
 
     // firing;
      bool isNumberGenerated = false;
      List<Int32> firingAnagleList = new List<Int32>();
 
-    void Start() {
-         
-    }
 
     void Update()
     {
@@ -49,24 +52,25 @@ public class AntagonistManager : MonoBehaviour
         /* 
         rotation;
         dividing 2 consecutive rotation into 2 part. 
-        first part is using positive  0.0 ->  0.9 -> 0.0,[180+180] which is known as firing part
-        second part is using negative 0.0 -> -0.9 -> 0.0,[180+180] which is known as holding part 
+        first part is using positive  0.0 ->  0.9 -> 0.0,[180+180] which is known as holding part
+        second part is using negative 0.0 -> -0.9 -> 0.0,[180+180] which is known as firing part 
         */
 
-        //Debug.Log(transform.localRotation.y);
+        //(transform.localRotation.y);
 
-        
-        // if the rotation angle is between 0 and 9 it's on firing state
+        // if the rotation angle is between 0 and -9 it's on firing state
         if (transform.localRotation.y < 0) {
-            time = 0.0f;
+
+                time = 0.0f;
                 RotateObject(firingTime);
                 FireProjitile();
                 FiringAnimation();
 
         }
-        // if the rotation angle is between 0 and -9 it's on holding state   
+        // if the rotation angle is between 0 and 9 it's on holding state   
         else if ( transform.localRotation.y >= 0) {
-                isNumberGenerated = false;
+
+                isNumberGenerated = false; 
                 firingAnagleList.Clear();
                 RotateObject(holdingTime);
                 IdelAnimation();
@@ -77,25 +81,23 @@ public class AntagonistManager : MonoBehaviour
     // generate random firing angles and fire.
     void FireProjitile() {
         // random number generator;
-        System.Random rnd = new System.Random();
-        int randvalue = 0;
+        System.Random random = new System.Random();
 
         // generate random number equal to firingtime(seconds); and add it to firingAngleList;
          /* numbergenerated(bool) reset on next Holding time; to avoid generating on each steps*/
-         if ( isNumberGenerated!= true) {
-                for (int j = 1; j <= bulletPerSeconds; j++)
+         if ( isNumberGenerated!= true) { 
+                for (int j = 1; j <= bulletPerRotation; j++)
                 {
-                    randvalue = Convert.ToInt32(rnd.NextDouble() * 360);
+                    int randvalue = random.Next(0, 361);
                     firingAnagleList.Add(randvalue);     
                 }
+
             isNumberGenerated = true;
-
-            foreach ( int i in firingAnagleList) {
-         }
          }
 
-         int angle = Convert.ToInt32(transform.localRotation.eulerAngles.y);
-        if (firingAnagleList.Contains(angle)) 
+        // get current angle from object transfrom and check the firstAngle List;
+        int angle = Convert.ToInt32(transform.localRotation.eulerAngles.y);
+        if (firingAnagleList.Contains(angle))  
         {
                 // remove duplicate firing angle.
                 firingAnagleList.Remove(angle);
@@ -110,19 +112,19 @@ public class AntagonistManager : MonoBehaviour
     {
         transform.Rotate(Vector3.up, (360 * Time.deltaTime) / seconds);
 
-       //  Debug.Log((360 * Time.deltaTime) / seconds);
+        // ((360 * Time.deltaTime) / seconds);
         // multiply 360 by Time.deltatime give us 360 full rotaiton in 1 seconds.
-        // dividing it by seconds to reduce the rotation angle in each steps;
+        // dividing it by seconds, to rotate one full cycle in given seconds.
+
     }
 
-    //firing-animatino, which start after the idel state.
+    //firing-animation, which start after the idel state.
     void FiringAnimation()
     {
         if (animator != null)
         {
             animator.CrossFade("Start_Firing", 0);
         }
-
     }
 
     // ideal animation, plays when antagonist after firing state.
@@ -132,13 +134,11 @@ public class AntagonistManager : MonoBehaviour
         {
             // blending between stop-firing state and idel state.
             animator.SetFloat("Idel", value);
-            // play stop-firing(blend) animation.
+            // play stop-firing(blend) animation.(transitions from stop-firing to idel)
             animator.Play("Stop_Firing");
             value = Mathf.Lerp(0, 10, time / 10);
-           // Debug.Log(value);
             time += Time.deltaTime;
         }
     }
-
 
 }

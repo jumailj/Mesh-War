@@ -4,10 +4,12 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System;
+using UnityEngine.InputSystem.LowLevel;
+
+
 
 public class GameManager : MonoBehaviour
 {
-
 
     public GameObject boundary;
     public GameObject protagonist;
@@ -31,42 +33,43 @@ public class GameManager : MonoBehaviour
     public AntagonistManager antagonistManager;
     public Boundary _boundary;
 
+    public PlayfabManager playfabManager;
+
     private bool EnableScore = true;
     private int Difficultiy = 0;
     private float BulletPreSecond = 4.0f;
 
 
 
+
+
+
     void Start() {    
         Application.targetFrameRate = 500;
+
+
+        // boundary-Object, Protagonist-Object, GameOver-UL should be disabled;
         setDefaultActive();
-        
     }
 
     void setDefaultActive() {
         boundary.SetActive(false);
         protagonist.SetActive(false);
-    //     antagonist.SetActive(false); 
+      //antagonist.SetActive(false); 
         gameOver.SetActive(false);
     }
 
 
     public void StartIntro()
     {
+        // remove all bullets from pervious section, and start game
         DestroyBullets();
-        //yield on a new YieldInstruction that waits for 5 seconds.
-     //    yield return new WaitForSeconds(1); 
-         StartGame();
+        StartGame();
     }
 
 
     public void StartGame() {
-        
-     //    Debug.Log("started game ");
 
-        // delete previous bullets;
-
-        // add some delay();
         boundary.SetActive(true);
         protagonist.SetActive(true);
         antagonist.SetActive(true);
@@ -75,20 +78,29 @@ public class GameManager : MonoBehaviour
     void DestroyBullets() {
 
         GameObject[] Bullets =  GameObject.FindGameObjectsWithTag("AntagonistBullet");  //returns GameObject[]
-
         foreach(GameObject bullets in Bullets)
             if (bullets.activeInHierarchy) {
                     Destroy(bullets);
-                //    Debug.Log(bullets);
             }          
-  }
+    }
 
 
     public void BackToMainMenu() {
-     //    gameOver.SetActive(true);
-        mainMenu.SetActive(true);
 
+        mainMenu.SetActive(true);
         setDefaultActive();
+
+
+
+        // reset Antagonist Properties;
+        antagonistManager.bulletSpeed = 1.0f;
+        antagonistManager.firingTime = 6.0f;
+        antagonistManager.holdingTime = 5.0f;
+        antagonistManager.bulletPerRotation = 4;
+
+
+        // update scoreboard;
+        playfabManager.GetScoreboard();
     }
 
     private int LastScore  = 0;
@@ -105,19 +117,14 @@ public class GameManager : MonoBehaviour
             Difficultiy++;
             IncreseDifficulty();
 
-            Debug.Log("increment difficulty");
         }
         else if(LastScore != score)
         {
             EnableScore = true;
         }
 
-
-
         UiHealthBar.fillAmount = _boundary.Health * 0.01f;
         UiShieldBar.fillAmount = protagonistManager.shieldcharge* 0.01f;
-
-        // Debug.Log( "boundary health in decimal " + _boundary.HealthInDecimal);
 
 
         labelScore.text  = protagonistManager.score.ToString();
@@ -125,6 +132,8 @@ public class GameManager : MonoBehaviour
         labelShieldCharger.text = protagonistManager.shieldcharge.ToString("0");
 
         if ( _boundary.Health <= 0) {
+           
+
             // call one time;
             labelGameOverScore.text = protagonistManager.score.ToString();
             protagonistManager.score = 0; // reset score;
@@ -156,19 +165,12 @@ public class GameManager : MonoBehaviour
             antagonistManager.holdingTime -= 0.05f;
         }
 
-        if (antagonistManager.bulletPerSeconds <= 8)
+        if (antagonistManager.bulletPerRotation <= 8)
         {
             BulletPreSecond  += 0.06f;
-            antagonistManager.bulletPerSeconds = (int)BulletPreSecond;
+            antagonistManager.bulletPerRotation = (int)BulletPreSecond;
         }
-
- //       Debug.Log("Bullet Spedd: " + antagonistManager.bulletSpeed);
- //       Debug.Log("firing dealy: " + antagonistManager.firingTime);
- //       Debug.Log("holding time: "+ antagonistManager.holdingTime);
- //       Debug.Log("bullet per second: "+ BulletPreSecond);
-
     }
-
 
 }
 
