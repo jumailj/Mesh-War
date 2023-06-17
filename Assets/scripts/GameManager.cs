@@ -41,9 +41,6 @@ public class GameManager : MonoBehaviour
 
 
 
-
-
-
     void Start() {    
         Application.targetFrameRate = 500;
 
@@ -97,6 +94,7 @@ public class GameManager : MonoBehaviour
         antagonistManager.firingTime = 6.0f;
         antagonistManager.holdingTime = 5.0f;
         antagonistManager.bulletPerRotation = 4;
+        BulletPreSecond = 4.0f;
 
 
         // update scoreboard;
