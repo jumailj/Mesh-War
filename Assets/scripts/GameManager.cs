@@ -35,6 +35,9 @@ public class GameManager : MonoBehaviour
 
     public PlayfabManager playfabManager;
 
+    public AudioManager audioManager;
+    public Animator boundaryAnimator;
+
     private bool EnableScore = true;
     private int Difficultiy = 0;
     private float BulletPreSecond = 4.0f;
@@ -47,6 +50,10 @@ public class GameManager : MonoBehaviour
 
         // boundary-Object, Protagonist-Object, GameOver-UL should be disabled;
         setDefaultActive();
+        audioManager.Play("menu");
+
+        boundaryAnimator.Play("idel");
+           
     }
 
     void setDefaultActive() {
@@ -66,6 +73,10 @@ public class GameManager : MonoBehaviour
 
 
     public void StartGame() {
+
+        audioManager.Stop("menu");
+        audioManager.Play("galaxy-nauts");
+        boundaryAnimator.Play("level-1");
 
         boundary.SetActive(true);
         protagonist.SetActive(true);
@@ -89,7 +100,7 @@ public class GameManager : MonoBehaviour
 
 
 
-        // reset Antagonist Properties;
+        // reset Antagonist Properties, for next-start
         antagonistManager.bulletSpeed = 1.0f;
         antagonistManager.firingTime = 6.0f;
         antagonistManager.holdingTime = 5.0f;
@@ -115,11 +126,27 @@ public class GameManager : MonoBehaviour
             Difficultiy++;
             IncreseDifficulty();
 
+
+            if( score == 20)
+            {
+                audioManager.Stop("galaxy-nauts");
+                audioManager.Play("net-bots");
+                boundaryAnimator.Play("level-2");
+
+            }else if (score == 40)
+            {
+                audioManager.Stop("net-bots");
+                audioManager.Play("divide-by-zero");
+                boundaryAnimator.Play("level-3");
+            }
+
         }
         else if(LastScore != score)
         {
             EnableScore = true;
         }
+
+
 
         UiHealthBar.fillAmount = _boundary.Health * 0.01f;
         UiShieldBar.fillAmount = protagonistManager.shieldcharge* 0.01f;
