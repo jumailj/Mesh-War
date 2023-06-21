@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 using System;
+using static GameManager;
 
 
 public class logger : MonoBehaviour
@@ -11,6 +12,7 @@ public class logger : MonoBehaviour
 
     public ProtagonistManager protagonist;
     public AntagonistManager antagonist;
+    public GameManager gameManager;
 
     public GameObject playerObject;
     public Text fpsText;
@@ -33,10 +35,13 @@ public class logger : MonoBehaviour
             + "\n"
             + "Firing Time: " + antagonist.firingTime.ToString()
             + "\n"
-            + "Holding Time: "+ antagonist.holdingTime.ToString()
+            + "Holding Time: " + antagonist.holdingTime.ToString()
             + "\n"
-            + "Bullet per rotation: "+ antagonist.bulletPerRotation.ToString();
-            
+            + "Bullet per rotation: " + antagonist.bulletPerRotation.ToString()
+            + "\n"
+            + "Game State: " + gameManager.gameLevelState.ToString();
+
+
 
     }
 }
