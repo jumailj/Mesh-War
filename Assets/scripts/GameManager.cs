@@ -7,7 +7,6 @@ using System;
 using UnityEngine.InputSystem.LowLevel;
 
 
-
 public class GameManager : MonoBehaviour
 {
 
@@ -33,7 +32,6 @@ public class GameManager : MonoBehaviour
     public AntagonistManager antagonistManager;
     public Boundary _boundary;
 
-    public PlayfabManager playfabManager;
 
     public AudioManager audioManager;
     public Animator boundaryAnimator;
@@ -42,15 +40,14 @@ public class GameManager : MonoBehaviour
     private float BulletPreSecond = 4.0f;
 
 
-
    public enum GameLevelState {idel = 0, level1 = 1, level2= 2, level3= 3 };
    public  GameLevelState gameLevelState = GameLevelState.idel;
 
 
-    void Start() {    
+    void Start() {
+        UiShieldBar.fillAmount = 0.0f;
         Application.targetFrameRate = 500;
-
-        // boundary-Object, Protagonist-Object, GameOver-UL should be disabled;
+        
         setDefaultActive();
         ChangeBoundaryState(GameLevelState.idel);
     }
@@ -65,6 +62,10 @@ public class GameManager : MonoBehaviour
 
     public void StartIntro()
     {
+        Debug.Log("game started");
+
+        // hide mainmenu
+        mainMenu.SetActive(false);
         // remove all bullets from pervious section, and start game
         DestroyBullets();
         StartLevel();
@@ -74,7 +75,6 @@ public class GameManager : MonoBehaviour
     public void StartLevel() {
 
         ChangeBoundaryState(GameLevelState.level1);
-
 
         boundary.SetActive(true);
         protagonist.SetActive(true);
@@ -106,12 +106,18 @@ public class GameManager : MonoBehaviour
 
 
         // update scoreboard;
-        playfabManager.GetScoreboard();
+      //  playfabManager.GetScoreboard();
     }
 
     private int LastScore  = 0;
  
     void Update() {
+
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            StartIntro();
+        }
+
         int score = protagonistManager.score;
 
         if ( (score!= 0) && (score%2) == 0 && EnableScore == true)
@@ -139,8 +145,14 @@ public class GameManager : MonoBehaviour
             EnableScore = true;
         }
 
-        UiHealthBar.fillAmount = _boundary.Health * 0.01f;
-        UiShieldBar.fillAmount = protagonistManager.shieldcharge* 0.01f;
+         UiHealthBar.fillAmount = _boundary.Health * 0.01f;
+         UiShieldBar.fillAmount = protagonistManager.shieldcharge* 0.01f;
+
+        
+        if (Input.GetKeyDown(KeyCode.Z)) {
+
+            Debug.Log(protagonistManager.shieldcharge.ToString());
+        }
 
 
         labelScore.text  = protagonistManager.score.ToString();

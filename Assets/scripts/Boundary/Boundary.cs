@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Boundary : MonoBehaviour
 {
-    public PlayfabManager playfabManager;
+   //  public PlayfabManager playfabManager; 
     public ProtagonistManager protagonistmanager;
 
     private float GroundColorDelay = 0.5f;
@@ -65,7 +65,7 @@ public class Boundary : MonoBehaviour
             if ( Health <= 0)
             {
                 boundrayMat.SetColor("_EmissionColor", fullHealthColor);
-                playfabManager.SendScoreBoard(protagonistmanager.score);         
+               //  playfabManager.SendScoreBoard(protagonistmanager.score);         
                 gameObject.SetActive(false);
             }
 

@@ -5,18 +5,18 @@ using UnityEngine;
 public class ProtagonistBullet : MonoBehaviour
 {
     // Start is called before the first frame update
-    GameObject PlayFab;
+    // GameObject PlayFab;
     GameObject Protagonist;
 
 
     // Use this for initialization
-    PlayfabManager playfabManager;
+    // PlayfabManager playfabManager;
     ProtagonistManager protagonistmanager;
 
     void Start()
     {
-        PlayFab = GameObject.FindWithTag("PlayFab");
-        playfabManager = PlayFab.GetComponent<PlayfabManager>(); 
+        //  PlayFab = GameObject.FindWithTag("PlayFab");
+       //  playfabManager = PlayFab.GetComponent<PlayfabManager>(); 
 
         Protagonist = GameObject.FindWithTag("Protagonist");
         protagonistmanager = Protagonist.GetComponent<ProtagonistManager>();   
