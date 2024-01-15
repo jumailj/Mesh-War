@@ -6,12 +6,13 @@ TagManager:
   tags:
   - bulletDespawner
   - playerShield
-  - PlayFab
   - Boundry
   - Protagonist
   - Antagonist
   - AntagonistBullet
   - ProtagonistShield
+  - SparkParticles
+  - ProtagonistBullet
   layers:
   - Default
   - TransparentFX

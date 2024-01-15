@@ -64,13 +64,11 @@ public class Boundary : MonoBehaviour
           
             if ( Health <= 0)
             {
-                boundrayMat.SetColor("_EmissionColor", fullHealthColor);
-               //  playfabManager.SendScoreBoard(protagonistmanager.score);         
+                boundrayMat.SetColor("_EmissionColor", fullHealthColor);        
                 gameObject.SetActive(false);
             }
 
             boundrayMat.SetColor("_EmissionColor",Color.Lerp(zeroHealthColor, fullHealthColor, Health * 0.01f));
-
 
             // if collide with AntagonisthBullet
             // animate ground color;

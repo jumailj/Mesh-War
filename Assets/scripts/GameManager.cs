@@ -9,7 +9,6 @@ using UnityEngine.InputSystem.LowLevel;
 
 public class GameManager : MonoBehaviour
 {
-
     public GameObject boundary;
     public GameObject protagonist;
     public GameObject antagonist; 
@@ -66,6 +65,7 @@ public class GameManager : MonoBehaviour
 
         // hide mainmenu
         mainMenu.SetActive(false);
+
         // remove all bullets from pervious section, and start game
         DestroyBullets();
         StartLevel();
@@ -113,11 +113,6 @@ public class GameManager : MonoBehaviour
  
     void Update() {
 
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            StartIntro();
-        }
-
         int score = protagonistManager.score;
 
         if ( (score!= 0) && (score%2) == 0 && EnableScore == true)
@@ -148,20 +143,16 @@ public class GameManager : MonoBehaviour
          UiHealthBar.fillAmount = _boundary.Health * 0.01f;
          UiShieldBar.fillAmount = protagonistManager.shieldcharge* 0.01f;
 
-        
-        if (Input.GetKeyDown(KeyCode.Z)) {
-
-            Debug.Log(protagonistManager.shieldcharge.ToString());
-        }
-
 
         labelScore.text  = protagonistManager.score.ToString();
         labelHealth.text = _boundary.Health.ToString();
         labelShieldCharger.text = protagonistManager.shieldcharge.ToString("0");
 
+
         if ( _boundary.Health <= 0) {
             gameLevelState = GameLevelState.idel;
             ChangeBoundaryState(GameLevelState.idel);
+
             // call one time;
             labelGameOverScore.text = protagonistManager.score.ToString();
             protagonistManager.score = 0; // reset score;
@@ -225,6 +216,7 @@ public class GameManager : MonoBehaviour
                 break;
             default:
                 Debug.LogError("unknown gamestate state");
+                audioManager.Stop("divide-by-zero"); // alwasy stops the lase case audio default;
                 break;
         }
     }

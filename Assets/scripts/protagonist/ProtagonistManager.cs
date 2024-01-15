@@ -20,8 +20,11 @@ public class ProtagonistManager : MonoBehaviour
     private GameObject activeObject;
     
     public int score;
+
+    public AudioManager audioManger;
     
     private ProtagonistController protagonistController;
+
 
    private void Awake() {
         protagonistController = new ProtagonistController();
@@ -76,6 +79,11 @@ public class ProtagonistManager : MonoBehaviour
                 if ( activeObject == null) 
                 {
                 Instantiate(bullet,spawnTransform.position, spawnTransform.rotation);
+
+                    // play sound 
+                    audioManger.Stop("shoot");
+                    audioManger.Play("shoot");
+
                 }
             }        
     }
