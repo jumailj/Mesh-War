@@ -1841,6 +1841,7 @@ MonoBehaviour:
   bullet: {fileID: 5941424036094835063, guid: 940f69b6a4051f34eb3f5fb8a1609da9, type: 3}
   bulletSpeed: 7
   score: 0
+  audioManger: {fileID: 1996046327}
 --- !u!114 &756006956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2351,7 +2352,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 57
+  field of view: 56.81156
   orthographic: 0
   orthographic size: 10.34
   m_Depth: -1
@@ -2377,7 +2378,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.44377658, y: -0.32363886, z: 0.17580359, w: 0.8169538}
-  m_LocalPosition: {x: 10.8, y: 20.3, z: -11.5}
+  m_LocalPosition: {x: 11.18, y: 19.99, z: -11.79}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9425,7 +9426,7 @@ GameObject:
   - component: {fileID: 1996046327}
   m_Layer: 0
   m_Name: AudioManager
-  m_TagString: Untagged
+  m_TagString: AudioManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9445,27 +9446,39 @@ MonoBehaviour:
   sound:
   - name: menu
     clip: {fileID: 8300000, guid: 4a181ba4323e6a544a12b9a615da24dc, type: 3}
-    volume: 1
+    volume: 0.707
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: galaxy-nauts
     clip: {fileID: 8300000, guid: 221ab2d6d3504ee4896a83dd4f192c18, type: 3}
-    volume: 1
+    volume: 0.789
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: net-bots
     clip: {fileID: 8300000, guid: cc92b373c5cb9174da0b6afcb7275482, type: 3}
-    volume: 1
+    volume: 0.815
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: divide-by-zero
     clip: {fileID: 8300000, guid: 6e9821be7a40b684786f7b54d270b930, type: 3}
-    volume: 1
+    volume: 0.808
     pitch: 1
     loop: 1
+    source: {fileID: 0}
+  - name: blast
+    clip: {fileID: 8300000, guid: 88775136fbb6d634285710509e098b0a, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: shoot
+    clip: {fileID: 8300000, guid: 57c0bb7a8652b8a4fa62d1cf2b067f72, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
     source: {fileID: 0}
 --- !u!4 &1996046328
 Transform:

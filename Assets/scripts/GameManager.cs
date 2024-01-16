@@ -194,10 +194,13 @@ public class GameManager : MonoBehaviour
 
     void ChangeBoundaryState(GameLevelState state)
     {
+        //stops all when game restarted;
+        audioManager.StopAll();
+
         gameLevelState = state; // change globe state;
         switch (state)
         {
-            case GameLevelState.idel: // idel; // refer to menu state.
+            case GameLevelState.idel: // idel; // refer to menu state.           
                 ChangeAudio("divide-by-zero", "menu");
                 ChangeAnimation(boundaryAnimator, "idel");
 
@@ -216,7 +219,6 @@ public class GameManager : MonoBehaviour
                 break;
             default:
                 Debug.LogError("unknown gamestate state");
-                audioManager.Stop("divide-by-zero"); // alwasy stops the lase case audio default;
                 break;
         }
     }

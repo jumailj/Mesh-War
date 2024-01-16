@@ -13,6 +13,7 @@ TagManager:
   - ProtagonistShield
   - SparkParticles
   - ProtagonistBullet
+  - AudioManager
   layers:
   - Default
   - TransparentFX
