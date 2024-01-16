@@ -59,7 +59,6 @@ public class ProtagonistManager : MonoBehaviour
         gameObject.transform.RotateAround(enemyTarget.transform.position ,Vector3.up,horizontalMove);
     }
 
-
     private void HorizontalMove( float movespeed_, float speedFactor ) {
         float move = protagonistController.Player.move.ReadValue<float>();
         float HorizontaDouble_L = protagonistController.Player.move_Double_L.ReadValue<float>();
@@ -83,9 +82,8 @@ public class ProtagonistManager : MonoBehaviour
                     // play sound 
                     audioManger.Stop("shoot");
                     audioManger.Play("shoot");
-
                 }
-            }        
+            }
     }
 
     void Shield_() {

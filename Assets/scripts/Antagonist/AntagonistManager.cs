@@ -17,6 +17,8 @@ public class AntagonistManager : MonoBehaviour
     private float time = 0.0f;
     private float value = 0.0f;
 
+    public AudioManager audioManager;
+
 
     //Antagonist-Properties.
     [Tooltip("Bullet Speed")]
@@ -104,6 +106,9 @@ public class AntagonistManager : MonoBehaviour
 
                 // spawn bullets;
                 Instantiate(bullet, SpawnTransform.position, SpawnTransform.rotation);
+
+                // play firing sfx //todo if the game state is idel should not be play.
+                audioManager.Play("antogonist-fire");
         }
     }
 
