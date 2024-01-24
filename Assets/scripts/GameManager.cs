@@ -126,10 +126,10 @@ public class GameManager : MonoBehaviour
             switch(score) //change difficulty relative to score, should be even number;
             {
                 // first level should be change in start;
-                case 6:  // level-2
+                case 24:  // level-2
                     ChangeBoundaryState(GameLevelState.level2);
                     break;
-                case 12: // level-3
+                case 50: // level-3
                     ChangeBoundaryState(GameLevelState.level3);
                     break;
             }

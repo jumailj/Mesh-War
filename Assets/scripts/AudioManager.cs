@@ -50,7 +50,6 @@ public class AudioManager : MonoBehaviour
         foreach(Sound s in sound)
         {
             s.source.Stop();
-            Debug.Log("sounds " + s.name);
         }
     }
 }

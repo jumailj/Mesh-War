@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Threading;
+using System.Linq;
 
 public class AntagonistManager : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class AntagonistManager : MonoBehaviour
 
     //bullet prefab object;
     public GameObject bullet;
+    public GameObject bullet1;
     
     public Animator animator;
 
@@ -33,9 +35,15 @@ public class AntagonistManager : MonoBehaviour
     [Range(1,10)]
     public float holdingTime = 5.0f;
 
+    //leven-1 bullet;
     [Tooltip("Number of Bullets per Rotation.")]
     [Range(1,20)]
     public int bulletPerRotation = 4;
+
+    //level-2 bullet speed 
+    [Tooltip("2nd bullet speed")]
+    [Range(0.0f, 10.0f)]
+    public float secondBulletSpeed = 3.0f;
 
 
     // firing;
@@ -43,9 +51,9 @@ public class AntagonistManager : MonoBehaviour
      List<Int32> firingAnagleList = new List<Int32>();
 
 
+
     void Update()
     {
-
         // object rotation;
         //draw Red ray(Debug)
         Vector3 forwardDistance = transform.TransformDirection(Vector3.forward) * 10;
@@ -82,6 +90,7 @@ public class AntagonistManager : MonoBehaviour
 
     // generate random firing angles and fire.
     void FireProjitile() {
+
         // random number generator;
         System.Random random = new System.Random();
 
@@ -97,19 +106,38 @@ public class AntagonistManager : MonoBehaviour
             isNumberGenerated = true;
          }
 
+        firingAnagleList.Sort();
+
+
         // get current angle from object transfrom and check the firstAngle List;
         int angle = Convert.ToInt32(transform.localRotation.eulerAngles.y);
+        int LastAngleInList = firingAnagleList.LastOrDefault();
+
+
+
         if (firingAnagleList.Contains(angle))  
         {
-                // remove duplicate firing angle.
-                firingAnagleList.Remove(angle);
+            // remove duplicate firing angle.
+            firingAnagleList.Remove(angle);
 
-                // spawn bullets;
-                Instantiate(bullet, SpawnTransform.position, SpawnTransform.rotation);
 
-                // play firing sfx //todo if the game state is idel should not be play.
-                audioManager.Play("antogonist-fire");
+#if false
+            // spawn bullets;
+            if (LastAngleInList == angle) // level-2 bullet;
+                {
+                    Instantiate(bullet1, SpawnTransform.position, SpawnTransform.rotation);
+                }
+                else //level-1 bullet;
+                {
+                    Instantiate(bullet, SpawnTransform.position, SpawnTransform.rotation);
+                            }
+#endif
+
+            Instantiate(bullet, SpawnTransform.position, SpawnTransform.rotation);
+            // play firing sfx //todo if the game state is idel should not be play.
+            audioManager.Play("antogonist-fire");
         }
+
     }
 
 

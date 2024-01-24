@@ -24,6 +24,7 @@ public class logger : MonoBehaviour
         string player_shield = Convert.ToInt32(protagonist.shieldcharge).ToString();
         string playerSpeed = (protagonist.horizontalMove*10).ToString();
 
+        /*
         fpsText.text = "Fps : " + val.ToString() + "\n\n"
             + "Protagonist:\n"
             + "Shield: " + player_shield
@@ -41,7 +42,7 @@ public class logger : MonoBehaviour
             + "\n"
             + "Game State: " + gameManager.gameLevelState.ToString();
 
-
+*/
 
     }
 }

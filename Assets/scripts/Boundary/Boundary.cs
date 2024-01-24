@@ -31,7 +31,7 @@ public class Boundary : MonoBehaviour
 
     public void ResetColor() {
         // reset color to white.
-            boundrayMat.SetColor("_EmissionColor", fullHealthColor);
+            boundrayMat.SetColor("_Color", fullHealthColor);
         //reset color to black for ground.
             groundMat.SetColor("_Color", Color.black);
     }
@@ -64,11 +64,11 @@ public class Boundary : MonoBehaviour
           
             if ( Health <= 0)
             {
-                boundrayMat.SetColor("_EmissionColor", fullHealthColor);        
+                boundrayMat.SetColor("_Color", fullHealthColor);        
                 gameObject.SetActive(false);
             }
 
-            boundrayMat.SetColor("_EmissionColor",Color.Lerp(zeroHealthColor, fullHealthColor, Health * 0.01f));
+            boundrayMat.SetColor("_Color",Color.Lerp(zeroHealthColor, fullHealthColor, Health * 0.01f));
 
             // if collide with AntagonisthBullet
             // animate ground color;
